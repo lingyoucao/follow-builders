@@ -2,6 +2,8 @@
 
 # 追踪建造者，而非网红
 
+> 本 fork 已扩展为 236 个 X 账号，自行采集需要 `X_BEARER_TOKEN`。账号目录在 `config/x-account-catalog.json`，部署步骤见 [部署说明](DEPLOYMENT.zh-CN.md)。下方“无需 API key”仅指消费公开 feed 的客户端。
+
 一个 AI 驱动的信息聚合工具，追踪 AI 领域最顶尖的建造者——研究员、创始人、产品经理和工程师——并将他们的最新动态整理成易于消化的摘要推送给你。
 
 **理念：** 追踪那些真正在做产品、有独立见解的人，而非只会搬运信息的网红。
@@ -11,7 +13,7 @@
 每日或每周推送到你常用的通讯工具（Telegram、Discord、WhatsApp 等），包含：
 
 - 顶级 AI 播客新节目的精华摘要
-- 26 位精选 AI 建造者在 X/Twitter 上的关键观点和洞察
+- 236 个配置账号在 X/Twitter 上的关键观点和洞察
 - AI 公司官方博客的完整文章（Anthropic Engineering、Claude Blog）
 - 所有原始内容的链接
 - 支持英文、中文或双语版本

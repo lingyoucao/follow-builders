@@ -6,34 +6,30 @@
 // Runs on GitHub Actions (daily at 6am UTC) to fetch content and publish
 // feed-x.json, feed-podcasts.json, and feed-blogs.json.
 //
-// Deduplication: tracks previously seen tweet IDs, episode GUIDs, and article
-// URLs in state-feed.json so content is never repeated across runs.
+// X content is retained for 7 days; account cursors and pagination live in
+// state-feed.json. Podcast and blog entries retain their existing deduplication.
 //
 // Usage: node generate-feed.js [--tweets-only | --podcasts-only | --blogs-only]
 // Env vars needed: X_BEARER_TOKEN, POD2TXT_API_KEY
 // ============================================================================
 
-import { readFile, writeFile } from "fs/promises";
+import { readFile, writeFile, mkdir, rename } from "fs/promises";
 import { existsSync } from "fs";
 import { join } from "path";
+
+import { collectX, mergeContent } from "./x-collector.js";
+import { mergeAccounts } from "./import-x-accounts.js";
 
 // -- Constants ---------------------------------------------------------------
 
 const POD2TXT_BASE = "https://pod2txt.vercel.app/api";
-const X_API_BASE = "https://api.x.com/2";
 // Some RSS hosts (notably Substack) block non-browser user agents from cloud IPs.
 // Using a real Chrome UA avoids 403 errors in GitHub Actions.
 const RSS_USER_AGENT =
   "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36";
-const TWEET_LOOKBACK_HOURS = 24;
 const PODCAST_LOOKBACK_HOURS = 336; // 14 days — podcasts publish weekly/biweekly, not daily
 const BLOG_LOOKBACK_HOURS = 72;
-const MAX_TWEETS_PER_USER = 3;
 const MAX_ARTICLES_PER_BLOG = 3;
-const X_USER_LOOKUP_BATCH_SIZE = 5;
-const X_RETRY_STATUSES = new Set([500, 502, 503, 504]);
-const X_RETRY_ATTEMPTS = 3;
-
 // State file lives in the repo root so it gets committed by GitHub Actions
 const SCRIPT_DIR = decodeURIComponent(new URL(".", import.meta.url).pathname);
 const STATE_PATH = join(SCRIPT_DIR, "..", "state-feed.json");
@@ -47,14 +43,11 @@ async function loadState() {
   if (!existsSync(STATE_PATH)) {
     return { seenTweets: {}, seenVideos: {}, seenArticles: {} };
   }
-  try {
-    const state = JSON.parse(await readFile(STATE_PATH, "utf-8"));
-    // Ensure seenArticles exists for older state files
-    if (!state.seenArticles) state.seenArticles = {};
-    return state;
-  } catch {
-    return { seenTweets: {}, seenVideos: {}, seenArticles: {} };
-  }
+  const state = JSON.parse(await readFile(STATE_PATH, "utf-8"));
+  state.seenTweets ||= {};
+  state.seenVideos ||= {};
+  state.seenArticles ||= {};
+  return state;
 }
 
 async function saveState(state) {
@@ -69,14 +62,17 @@ async function saveState(state) {
   for (const [id, ts] of Object.entries(state.seenArticles || {})) {
     if (ts < cutoff) delete state.seenArticles[id];
   }
-  await writeFile(STATE_PATH, JSON.stringify(state, null, 2));
+  await writeFile(`${STATE_PATH}.tmp`, JSON.stringify(state, null, 2));
+  await rename(`${STATE_PATH}.tmp`, STATE_PATH);
 }
 
 // -- Load Sources ------------------------------------------------------------
 
 async function loadSources() {
   const sourcesPath = join(SCRIPT_DIR, "..", "config", "default-sources.json");
-  return JSON.parse(await readFile(sourcesPath, "utf-8"));
+  const sources = JSON.parse(await readFile(sourcesPath, "utf-8"));
+  mergeAccounts([], sources.x_accounts); // Validate before any API requests.
+  return sources;
 }
 
 // -- Podcast Fetching (RSS + pod2txt) ----------------------------------------
@@ -521,144 +517,6 @@ async function fetchPodcastContent(podcasts, apiKey, state, errors) {
   return [];
 }
 
-// -- X/Twitter Fetching (Official API v2) ------------------------------------
-
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
-async function fetchXWithRetry(url, options) {
-  let lastResponse;
-  for (let attempt = 1; attempt <= X_RETRY_ATTEMPTS; attempt++) {
-    try {
-      const res = await fetch(url, options);
-      lastResponse = res;
-      if (!X_RETRY_STATUSES.has(res.status) || attempt === X_RETRY_ATTEMPTS) {
-        return res;
-      }
-    } catch (err) {
-      if (attempt === X_RETRY_ATTEMPTS) throw err;
-    }
-    await sleep(1000 * attempt);
-  }
-  return lastResponse;
-}
-
-async function fetchXContent(xAccounts, bearerToken, state, errors) {
-  const results = [];
-  const cutoff = new Date(Date.now() - TWEET_LOOKBACK_HOURS * 60 * 60 * 1000);
-
-  // Batch lookup user IDs. Smaller batches make one flaky X response less likely
-  // to wipe out the whole feed.
-  const handles = xAccounts.map((a) => a.handle);
-  let userMap = {};
-
-  for (let i = 0; i < handles.length; i += X_USER_LOOKUP_BATCH_SIZE) {
-    const batch = handles.slice(i, i + X_USER_LOOKUP_BATCH_SIZE);
-    try {
-      const res = await fetchXWithRetry(
-        `${X_API_BASE}/users/by?usernames=${batch.join(",")}&user.fields=name,description`,
-        { headers: { Authorization: `Bearer ${bearerToken}` } },
-      );
-
-      if (!res.ok) {
-        errors.push(
-          `X API: User lookup failed for ${batch.join(",")}: HTTP ${res.status}`,
-        );
-        continue;
-      }
-
-      const data = await res.json();
-      for (const user of data.data || []) {
-        userMap[user.username.toLowerCase()] = {
-          id: user.id,
-          name: user.name,
-          description: user.description || "",
-        };
-      }
-      if (data.errors) {
-        for (const err of data.errors) {
-          errors.push(`X API: User not found: ${err.value || err.detail}`);
-        }
-      }
-    } catch (err) {
-      errors.push(`X API: User lookup error: ${err.message}`);
-    }
-  }
-
-  // Fetch recent tweets per user (max 3, exclude retweets/replies)
-  for (const account of xAccounts) {
-    const userData = userMap[account.handle.toLowerCase()];
-    if (!userData) continue;
-
-    try {
-      const res = await fetchXWithRetry(
-        `${X_API_BASE}/users/${userData.id}/tweets?` +
-          `max_results=5` + // fetch 5, then filter to 3 new ones
-          `&tweet.fields=created_at,public_metrics,referenced_tweets,note_tweet` +
-          `&exclude=retweets,replies` +
-          `&start_time=${cutoff.toISOString()}`,
-        { headers: { Authorization: `Bearer ${bearerToken}` } },
-      );
-
-      if (!res.ok) {
-        if (res.status === 429) {
-          errors.push(`X API: Rate limited, skipping remaining accounts`);
-          break;
-        }
-        errors.push(
-          `X API: Failed to fetch tweets for @${account.handle}: HTTP ${res.status}`,
-        );
-        continue;
-      }
-
-      const data = await res.json();
-      const allTweets = data.data || [];
-
-      // Filter out already-seen tweets, cap at 3
-      const newTweets = [];
-      for (const t of allTweets) {
-        if (state.seenTweets[t.id]) continue; // dedup
-        if (newTweets.length >= MAX_TWEETS_PER_USER) break;
-
-        newTweets.push({
-          id: t.id,
-          // note_tweet.text has the full untruncated text for long tweets (>280 chars)
-          text: t.note_tweet?.text || t.text,
-          createdAt: t.created_at,
-          url: `https://x.com/${account.handle}/status/${t.id}`,
-          likes: t.public_metrics?.like_count || 0,
-          retweets: t.public_metrics?.retweet_count || 0,
-          replies: t.public_metrics?.reply_count || 0,
-          isQuote:
-            t.referenced_tweets?.some((r) => r.type === "quoted") || false,
-          quotedTweetId:
-            t.referenced_tweets?.find((r) => r.type === "quoted")?.id || null,
-        });
-
-        // Mark as seen
-        state.seenTweets[t.id] = Date.now();
-      }
-
-      if (newTweets.length === 0) continue;
-
-      results.push({
-        source: "x",
-        name: account.name,
-        handle: account.handle,
-        bio: userData.description,
-        tweets: newTweets,
-      });
-
-      await new Promise((r) => setTimeout(r, 200));
-    } catch (err) {
-      errors.push(`X API: Error fetching @${account.handle}: ${err.message}`);
-    }
-  }
-
-  return results;
-}
-
 // -- Blog Fetching (HTML scraping) -------------------------------------------
 
 // Scrapes the Anthropic Engineering blog index page.
@@ -1004,6 +862,10 @@ async function fetchBlogContent(blogs, state, errors) {
 
 async function main() {
   const args = process.argv.slice(2);
+  const supported = new Set(["--tweets-only", "--podcasts-only", "--blogs-only"]);
+  if (args.some(arg => !supported.has(arg)) || args.length > 1) {
+    throw new Error("Choose at most one of --tweets-only, --podcasts-only, --blogs-only");
+  }
   const tweetsOnly = args.includes("--tweets-only");
   const podcastsOnly = args.includes("--podcasts-only");
   const blogsOnly = args.includes("--blogs-only");
@@ -1033,44 +895,35 @@ async function main() {
   // Fetch tweets
   if (runTweets) {
     console.error("Fetching X/Twitter content...");
-    const xContent = await fetchXContent(
-      sources.x_accounts,
-      xBearerToken,
-      state,
-      errors,
-    );
-    console.error(`  Found ${xContent.length} builders with new tweets`);
-
+    const { x: incoming, report } = await collectX(sources.x_accounts, xBearerToken, state, {
+      maxPages: Number(process.env.X_MAX_PAGES_PER_ACCOUNT || 3),
+      lookbackHours: Number(process.env.X_INITIAL_LOOKBACK_HOURS || 24),
+    });
+    const root = join(SCRIPT_DIR, "..");
+    await mkdir(join(root, "reports"), { recursive: true });
+    await writeFile(join(root, "reports/x-collection.json"), JSON.stringify(report, null, 2));
+    for (const failure of report.failed) errors.push(`X API: @${failure.handle}: ${failure.error}`);
+    const feedPath = join(root, "feed-x.json");
+    const previous = existsSync(feedPath) ? JSON.parse(await readFile(feedPath, "utf8")) : {};
+    const enabled = new Set(sources.x_accounts.filter(account => account.enabled !== false).map(account => account.handle.toLowerCase()));
+    const xContent = mergeContent(previous.x, incoming).filter(account => enabled.has(account.handle.toLowerCase()));
+    const generatedAt = new Date().toISOString();
+    const day = generatedAt.slice(0, 10);
+    const archivePath = join(root, "data/x", `${day}.json`);
+    await mkdir(join(root, "data/x"), { recursive: true });
+    const archive = existsSync(archivePath) ? JSON.parse(await readFile(archivePath, "utf8")) : {};
+    await writeFile(`${archivePath}.tmp`, JSON.stringify({ generatedAt, x: mergeContent(archive.x, incoming, Infinity) }, null, 2));
+    await rename(`${archivePath}.tmp`, archivePath);
     const totalTweets = xContent.reduce((sum, a) => sum + a.tweets.length, 0);
-    const xErrors = errors.filter((e) => e.startsWith("X API"));
-
-    if (xErrors.length > 0) {
-      console.error("  X API errors:");
-      for (const error of xErrors) {
-        console.error(`    - ${error}`);
-      }
-    }
-
-    if (xContent.length === 0 && xErrors.length > 0) {
-      throw new Error(
-        `X feed failed: 0 builders returned and ${xErrors.length} X API error(s) occurred`,
-      );
-    }
-
-    const xFeed = {
-      generatedAt: new Date().toISOString(),
-      lookbackHours: TWEET_LOOKBACK_HOURS,
-      x: xContent,
-      stats: { xBuilders: xContent.length, totalTweets },
-      errors: xErrors.length > 0 ? xErrors : undefined,
-    };
-    await writeFile(
-      join(SCRIPT_DIR, "..", "feed-x.json"),
-      JSON.stringify(xFeed, null, 2),
-    );
-    console.error(
-      `  feed-x.json: ${xContent.length} builders, ${totalTweets} tweets`,
-    );
+    const xFeed = { generatedAt, lookbackHours: 168, x: xContent,
+      stats: { configuredAccounts: sources.x_accounts.length, xBuilders: xContent.length, totalTweets },
+      errors: errors.filter(e => e.startsWith("X API")), collection: report };
+    await writeFile(`${feedPath}.tmp`, JSON.stringify(xFeed, null, 2));
+    await rename(`${feedPath}.tmp`, feedPath);
+    // Persist cursors only after content has been written. A crash replays safely.
+    await saveState(state);
+    console.error(`  feed-x.json: ${xContent.length} builders, ${totalTweets} retained tweets`);
+    if (report.failed.length || report.incomplete.length || report.skipped.some(h => sources.x_accounts.find(a => a.handle === h)?.enabled !== false)) process.exitCode = 1;
   }
 
   // Fetch podcasts

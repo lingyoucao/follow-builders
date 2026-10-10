@@ -2,14 +2,14 @@ name: Generate Feeds
 
 on:
   schedule:
-    # All feeds (tweets, podcasts, blogs): once daily at 6:17am UTC
+    # X feed: daily at 6:17 UTC (14:17 Asia/Shanghai)
     - cron: '17 6 * * *'
   workflow_dispatch:
     inputs:
       mode:
         description: 'What to fetch'
         required: false
-        default: 'all'
+        default: 'tweets-only'
         type: choice
         options:
           - all
@@ -17,31 +17,52 @@ on:
           - podcasts-only
           - blogs-only
 
+concurrency:
+  group: generate-feeds
+  cancel-in-progress: false
+
 jobs:
   generate:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     permissions:
       contents: write
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
 
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
 
       - name: Install dependencies
-        run: cd scripts && npm install
+        run: cd scripts && npm ci
+
+      - name: Verify scripts
+        run: cd scripts && npm test
 
       - name: Generate feeds
+        id: collect
+        continue-on-error: true
         env:
           X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
           POD2TXT_API_KEY: ${{ secrets.POD2TXT_API_KEY }}
+          EVENT_NAME: ${{ github.event_name }}
+          MODE: ${{ inputs.mode }}
         run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.mode }}" != "all" ]; then
-            cd scripts && node generate-feed.js --${{ inputs.mode }}
+          # Discard a previous run's report so early failures cannot show stale success.
+          mkdir -p reports
+          rm -f reports/x-collection.json
+          if [ "$EVENT_NAME" != "workflow_dispatch" ]; then
+            cd scripts && node generate-feed.js --tweets-only
           else
-            cd scripts && node generate-feed.js
+            case "$MODE" in
+              all) cd scripts && node generate-feed.js ;;
+              tweets-only|podcasts-only|blogs-only) cd scripts && node generate-feed.js "--$MODE" ;;
+              *) echo "Invalid collection mode" >&2; exit 1 ;;
+            esac
           fi
 
       - name: Commit and push feeds
@@ -49,5 +70,24 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add feed-x.json feed-podcasts.json feed-blogs.json state-feed.json
-          git diff --cached --quiet || git commit -m "chore: update feeds [skip ci]"
-          git push
+          if [ -d data/x ]; then git add data/x; fi
+          if [ -d reports ]; then git add reports; fi
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "chore: update feeds [skip ci]"
+          git push origin "HEAD:$GITHUB_REF_NAME"
+
+      - name: Collection summary
+        if: always()
+        run: |
+          if [ -f reports/x-collection.json ]; then
+            echo '### X collection report' >> "$GITHUB_STEP_SUMMARY"
+            echo '```json' >> "$GITHUB_STEP_SUMMARY"
+            cat reports/x-collection.json >> "$GITHUB_STEP_SUMMARY"
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo 'No collection report was generated. Check the collection step logs and required secrets (X_BEARER_TOKEN for X; POD2TXT_API_KEY for podcasts).' >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Report collection failure
+        if: steps.collect.outcome == 'failure'
+        run: exit 1

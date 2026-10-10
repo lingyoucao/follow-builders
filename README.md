@@ -2,6 +2,8 @@
 
 # Follow Builders, Not Influencers
 
+> This fork configures 236 X accounts. Self-hosted collection requires `X_BEARER_TOKEN`; consuming public feeds does not. See the [JSON account catalog](config/x-account-catalog.json) and [deployment guide](DEPLOYMENT.zh-CN.md).
+
 An AI-powered digest that tracks the top builders in AI — researchers, founders, PMs,
 and engineers who are actually building things — and delivers curated summaries of
 what they're saying.
@@ -15,7 +17,7 @@ A daily or weekly digest delivered to your preferred messaging app (Telegram, Di
 WhatsApp, etc.) with:
 
 - Summaries of new podcast episodes from top AI podcasts
-- Key posts and insights from 26 curated AI builders on X/Twitter
+- Key posts and insights from 236 configured AI accounts on X/Twitter
 - Full articles from official AI company blogs (Anthropic Engineering, Claude Blog)
 - Links to all original content
 - Available in English, Chinese, or bilingual

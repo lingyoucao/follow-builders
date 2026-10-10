@@ -48,31 +48,1863 @@
     }
   ],
   "x_accounts": [
-    { "name": "Andrej Karpathy", "handle": "karpathy" },
-    { "name": "Swyx", "handle": "swyx" },
-    { "name": "Josh Woodward", "handle": "joshwoodward" },
-    { "name": "Boris Cherny", "handle": "bcherny" },
-    { "name": "Thibault Sottiaux", "handle": "thsottiaux" },
-    { "name": "Peter Yang", "handle": "petergyang" },
-    { "name": "Nan Yu", "handle": "thenanyu" },
-    { "name": "Madhu Guru", "handle": "realmadhuguru" },
-    { "name": "Amanda Askell", "handle": "AmandaAskell" },
-    { "name": "Cat Wu", "handle": "_catwu" },
-    { "name": "Thariq", "handle": "trq212" },
-    { "name": "Google Labs", "handle": "GoogleLabs" },
-    { "name": "Amjad Masad", "handle": "amasad" },
-    { "name": "Guillermo Rauch", "handle": "rauchg" },
-    { "name": "Alex Albert", "handle": "alexalbert__" },
-    { "name": "Aaron Levie", "handle": "levie" },
-    { "name": "Ryo Lu", "handle": "ryolu_" },
-    { "name": "Garry Tan", "handle": "garrytan" },
-    { "name": "Matt Turck", "handle": "mattturck" },
-    { "name": "Zara Zhang", "handle": "zarazhangrui" },
-    { "name": "Nikunj Kothari", "handle": "nikunj" },
-    { "name": "Peter Steinberger", "handle": "steipete" },
-    { "name": "Dan Shipper", "handle": "danshipper" },
-    { "name": "Aditya Agarwal", "handle": "adityaag" },
-    { "name": "Sam Altman", "handle": "sama" },
-    { "name": "Claude", "handle": "claudeai" }
+    {
+      "enabled": true,
+      "name": "Andrej Karpathy",
+      "handle": "karpathy",
+      "url": "https://x.com/karpathy",
+      "category": "05 AI Coding / Agent / 开发工具一线实践（34 位）",
+      "focus": "AI Coding、autoresearch、nanoGPT"
+    },
+    {
+      "enabled": true,
+      "name": "Swyx",
+      "handle": "swyx",
+      "url": "https://x.com/swyx",
+      "category": "05 AI Coding / Agent / 开发工具一线实践（34 位）",
+      "focus": "AI Engineer、Agent 工具链观察"
+    },
+    {
+      "name": "Josh Woodward",
+      "handle": "joshwoodward",
+      "url": "https://x.com/joshwoodward"
+    },
+    {
+      "enabled": true,
+      "name": "Boris Cherny",
+      "handle": "bcherny",
+      "url": "https://x.com/bcherny",
+      "category": "01 OpenAI / Anthropic 核心人物（23 位）",
+      "focus": "Claude Code 原作者；Skills、Hooks、多 Agent"
+    },
+    {
+      "name": "Thibault Sottiaux",
+      "handle": "thsottiaux",
+      "url": "https://x.com/thsottiaux"
+    },
+    {
+      "enabled": true,
+      "name": "Peter Yang",
+      "handle": "petergyang",
+      "url": "https://x.com/petergyang",
+      "category": "10 一线研究扩展：Google / Meta / Stanford / AI 工程（16 位）",
+      "focus": "产品管理、AI 应用和实际工作流"
+    },
+    {
+      "name": "Nan Yu",
+      "handle": "thenanyu",
+      "url": "https://x.com/thenanyu"
+    },
+    {
+      "name": "Madhu Guru",
+      "handle": "realmadhuguru",
+      "url": "https://x.com/realmadhuguru"
+    },
+    {
+      "enabled": true,
+      "name": "Amanda Askell",
+      "handle": "AmandaAskell",
+      "url": "https://x.com/AmandaAskell",
+      "category": "01 OpenAI / Anthropic 核心人物（23 位）",
+      "focus": "Claude 行为设计、对齐与实验"
+    },
+    {
+      "enabled": true,
+      "name": "Cat Wu",
+      "handle": "_catwu",
+      "url": "https://x.com/_catwu",
+      "category": "01 OpenAI / Anthropic 核心人物（23 位）",
+      "focus": "Claude Code 功能、后台任务和开发体验"
+    },
+    {
+      "enabled": true,
+      "name": "Thariq",
+      "handle": "trq212",
+      "url": "https://x.com/trq212",
+      "category": "01 OpenAI / Anthropic 核心人物（23 位）",
+      "focus": "Claude Code、Skills、非编码任务工作流"
+    },
+    {
+      "name": "Google Labs",
+      "handle": "GoogleLabs",
+      "url": "https://x.com/GoogleLabs"
+    },
+    {
+      "enabled": true,
+      "name": "Amjad Masad",
+      "handle": "amasad",
+      "url": "https://x.com/amasad",
+      "category": "04 其他前沿 AI 公司创始人 / 研究主管（33 位）",
+      "focus": "Replit：AI 生成代码和开发流程"
+    },
+    {
+      "enabled": true,
+      "name": "Guillermo Rauch",
+      "handle": "rauchg",
+      "url": "https://x.com/rauchg",
+      "category": "04 其他前沿 AI 公司创始人 / 研究主管（33 位）",
+      "focus": "Vercel/v0：AI 生成前端、开发工具"
+    },
+    {
+      "enabled": true,
+      "name": "Alex Albert",
+      "handle": "alexalbert__",
+      "url": "https://x.com/alexalbert__",
+      "category": "01 OpenAI / Anthropic 核心人物（23 位）",
+      "focus": "Claude 提示词、API 和模型能力案例"
+    },
+    {
+      "enabled": true,
+      "name": "Aaron Levie",
+      "handle": "levie",
+      "url": "https://x.com/levie",
+      "category": "04 其他前沿 AI 公司创始人 / 研究主管（33 位）",
+      "focus": "Box CEO：企业 AI、知识工作流"
+    },
+    {
+      "name": "Ryo Lu",
+      "handle": "ryolu_",
+      "url": "https://x.com/ryolu_"
+    },
+    {
+      "enabled": true,
+      "name": "Garry Tan",
+      "handle": "garrytan",
+      "url": "https://x.com/garrytan",
+      "category": "05 AI Coding / Agent / 开发工具一线实践（34 位）",
+      "focus": "Claude Code/gstack 软件团队工作流"
+    },
+    {
+      "enabled": true,
+      "name": "Matt Turck",
+      "handle": "mattturck",
+      "url": "https://x.com/mattturck",
+      "category": "10 一线研究扩展：Google / Meta / Stanford / AI 工程（16 位）",
+      "focus": "AI 产业访谈、模型与工程落地"
+    },
+    {
+      "enabled": true,
+      "name": "Zara Zhang",
+      "handle": "zarazhangrui",
+      "url": "https://x.com/zarazhangrui",
+      "category": "09 中文 AI 技术 / 一线应用创作者（12 位）",
+      "focus": "AI 实战资讯、应用观察"
+    },
+    {
+      "name": "Nikunj Kothari",
+      "handle": "nikunj",
+      "url": "https://x.com/nikunj"
+    },
+    {
+      "enabled": true,
+      "name": "Peter Steinberger",
+      "handle": "steipete",
+      "url": "https://x.com/steipete",
+      "category": "01 OpenAI / Anthropic 核心人物（23 位）",
+      "focus": "OpenClaw、Coding Agent、AI 自动化"
+    },
+    {
+      "name": "Dan Shipper",
+      "handle": "danshipper",
+      "url": "https://x.com/danshipper"
+    },
+    {
+      "name": "Aditya Agarwal",
+      "handle": "adityaag",
+      "url": "https://x.com/adityaag"
+    },
+    {
+      "enabled": true,
+      "name": "Sam Altman",
+      "handle": "sama",
+      "url": "https://x.com/sama",
+      "category": "01 OpenAI / Anthropic 核心人物（23 位）",
+      "focus": "OpenAI 战略、产品和 AGI 判断"
+    },
+    {
+      "name": "Claude",
+      "handle": "claudeai",
+      "url": "https://x.com/claudeai"
+    },
+    {
+      "enabled": true,
+      "name": "Greg Brockman",
+      "handle": "gdb",
+      "url": "https://x.com/gdb",
+      "category": "01 OpenAI / Anthropic 核心人物（23 位）",
+      "focus": "OpenAI 训练基础设施、工程实践"
+    },
+    {
+      "enabled": true,
+      "name": "Mark Chen",
+      "handle": "markchen90",
+      "url": "https://x.com/markchen90",
+      "category": "01 OpenAI / Anthropic 核心人物（23 位）",
+      "focus": "OpenAI 模型研究与推理能力"
+    },
+    {
+      "enabled": true,
+      "name": "Nick Turley",
+      "handle": "nickaturley",
+      "url": "https://x.com/nickaturley",
+      "category": "01 OpenAI / Anthropic 核心人物（23 位）",
+      "focus": "ChatGPT 产品设计和用户工作流"
+    },
+    {
+      "enabled": true,
+      "name": "Kevin Weil",
+      "handle": "kevinweil",
+      "url": "https://x.com/kevinweil",
+      "category": "01 OpenAI / Anthropic 核心人物（23 位）",
+      "focus": "OpenAI 产品和开发者生态"
+    },
+    {
+      "enabled": true,
+      "name": "Noam Brown",
+      "handle": "polynoamial",
+      "url": "https://x.com/polynoamial",
+      "category": "01 OpenAI / Anthropic 核心人物（23 位）",
+      "focus": "推理模型、强化学习与博弈"
+    },
+    {
+      "enabled": true,
+      "name": "Wojciech Zaremba",
+      "handle": "woj_zaremba",
+      "url": "https://x.com/woj_zaremba",
+      "category": "01 OpenAI / Anthropic 核心人物（23 位）",
+      "focus": "机器人、模型研究和产品观察"
+    },
+    {
+      "enabled": true,
+      "name": "Jason Liu",
+      "handle": "jxnlco",
+      "url": "https://x.com/jxnlco",
+      "category": "01 OpenAI / Anthropic 核心人物（23 位）",
+      "focus": "结构化输出、Evals、Codex 工程"
+    },
+    {
+      "enabled": true,
+      "name": "Dario Amodei",
+      "handle": "DarioAmodei",
+      "url": "https://x.com/DarioAmodei",
+      "category": "01 OpenAI / Anthropic 核心人物（23 位）",
+      "focus": "Anthropic CEO：AI 能力、安全与长期判断"
+    },
+    {
+      "enabled": true,
+      "name": "Daniela Amodei",
+      "handle": "DanielaAmodei",
+      "url": "https://x.com/DanielaAmodei",
+      "category": "01 OpenAI / Anthropic 核心人物（23 位）",
+      "focus": "Anthropic 产品战略和企业应用"
+    },
+    {
+      "enabled": true,
+      "name": "Chris Olah",
+      "handle": "ch402",
+      "url": "https://x.com/ch402",
+      "category": "01 OpenAI / Anthropic 核心人物（23 位）",
+      "focus": "可解释性和模型内部机制"
+    },
+    {
+      "enabled": true,
+      "name": "Jan Leike",
+      "handle": "janleike",
+      "url": "https://x.com/janleike",
+      "category": "01 OpenAI / Anthropic 核心人物（23 位）",
+      "focus": "模型对齐、AI 风险和训练思考"
+    },
+    {
+      "enabled": true,
+      "name": "Jack Clark",
+      "handle": "jackclarkSF",
+      "url": "https://x.com/jackclarkSF",
+      "category": "01 OpenAI / Anthropic 核心人物（23 位）",
+      "focus": "Anthropic 联合创始人、Import AI 精选研究"
+    },
+    {
+      "enabled": true,
+      "name": "Tom Brown",
+      "handle": "nottombrown",
+      "url": "https://x.com/nottombrown",
+      "category": "01 OpenAI / Anthropic 核心人物（23 位）",
+      "focus": "LLM 研究、模型训练和系统设计"
+    },
+    {
+      "enabled": true,
+      "name": "Sam McCandlish",
+      "handle": "samsamoa",
+      "url": "https://x.com/samsamoa",
+      "category": "01 OpenAI / Anthropic 核心人物（23 位）",
+      "focus": "Scaling Laws 与 AI 安全研究"
+    },
+    {
+      "enabled": true,
+      "name": "Sam Bowman",
+      "handle": "sleepinyourhat",
+      "url": "https://x.com/sleepinyourhat",
+      "category": "01 OpenAI / Anthropic 核心人物（23 位）",
+      "focus": "Anthropic 对齐研究，LLM 行为和测评"
+    },
+    {
+      "enabled": true,
+      "name": "Mike Krieger",
+      "handle": "mikeyk",
+      "url": "https://x.com/mikeyk",
+      "category": "01 OpenAI / Anthropic 核心人物（23 位）",
+      "focus": "Anthropic 产品开发、设计与落地"
+    },
+    {
+      "enabled": true,
+      "name": "Demis Hassabis",
+      "handle": "demishassabis",
+      "url": "https://x.com/demishassabis",
+      "category": "02 Google / DeepMind / Microsoft（21 位）",
+      "focus": "Google DeepMind 科学智能和研究方向"
+    },
+    {
+      "enabled": true,
+      "name": "Jeff Dean",
+      "handle": "JeffDean",
+      "url": "https://x.com/JeffDean",
+      "category": "02 Google / DeepMind / Microsoft（21 位）",
+      "focus": "Google DeepMind 系统、Gemini 和 AI 研究"
+    },
+    {
+      "enabled": true,
+      "name": "Sundar Pichai",
+      "handle": "sundarpichai",
+      "url": "https://x.com/sundarpichai",
+      "category": "02 Google / DeepMind / Microsoft（21 位）",
+      "focus": "Google CEO：Gemini 与 AI 产品战略"
+    },
+    {
+      "enabled": true,
+      "name": "Oriol Vinyals",
+      "handle": "OriolVinyalsML",
+      "url": "https://x.com/OriolVinyalsML",
+      "category": "02 Google / DeepMind / Microsoft（21 位）",
+      "focus": "强化学习、多模态与基础模型"
+    },
+    {
+      "enabled": true,
+      "name": "Denny Zhou",
+      "handle": "denny_zhou",
+      "url": "https://x.com/denny_zhou",
+      "category": "02 Google / DeepMind / Microsoft（21 位）",
+      "focus": "Chain-of-Thought、推理研究"
+    },
+    {
+      "enabled": true,
+      "name": "Logan Kilpatrick",
+      "handle": "OfficialLoganK",
+      "url": "https://x.com/OfficialLoganK",
+      "category": "02 Google / DeepMind / Microsoft（21 位）",
+      "focus": "Google AI Studio、Gemini API 实用技巧"
+    },
+    {
+      "enabled": true,
+      "name": "Shane Legg",
+      "handle": "ShaneLegg",
+      "url": "https://x.com/ShaneLegg",
+      "category": "02 Google / DeepMind / Microsoft（21 位）",
+      "focus": "AGI 定义、智能测量与方向"
+    },
+    {
+      "enabled": true,
+      "name": "Nando de Freitas",
+      "handle": "NandoDF",
+      "url": "https://x.com/NandoDF",
+      "category": "02 Google / DeepMind / Microsoft（21 位）",
+      "focus": "基础模型、推理、强化学习"
+    },
+    {
+      "enabled": true,
+      "name": "Quoc Le",
+      "handle": "quocleix",
+      "url": "https://x.com/quocleix",
+      "category": "02 Google / DeepMind / Microsoft（21 位）",
+      "focus": "深度学习架构、模型训练"
+    },
+    {
+      "enabled": true,
+      "name": "Ian Goodfellow",
+      "handle": "goodfellow_ian",
+      "url": "https://x.com/goodfellow_ian",
+      "category": "02 Google / DeepMind / Microsoft（21 位）",
+      "focus": "生成模型、GAN 和 AI 研究"
+    },
+    {
+      "enabled": true,
+      "name": "Natasha Jaques",
+      "handle": "natashajaques",
+      "url": "https://x.com/natashajaques",
+      "category": "02 Google / DeepMind / Microsoft（21 位）",
+      "focus": "强化学习、人机交互与模型研究"
+    },
+    {
+      "enabled": true,
+      "name": "Aakanksha Chowdhery",
+      "handle": "achowdhery",
+      "url": "https://x.com/achowdhery",
+      "category": "02 Google / DeepMind / Microsoft（21 位）",
+      "focus": "PaLM 与大语言模型研究"
+    },
+    {
+      "enabled": true,
+      "name": "Zoubin Ghahramani",
+      "handle": "ZoubinGhahrama1",
+      "url": "https://x.com/ZoubinGhahrama1",
+      "category": "02 Google / DeepMind / Microsoft（21 位）",
+      "focus": "概率机器学习、产业研究"
+    },
+    {
+      "enabled": true,
+      "name": "Riley Goodside",
+      "handle": "goodside",
+      "url": "https://x.com/goodside",
+      "category": "02 Google / DeepMind / Microsoft（21 位）",
+      "focus": "提示词工程、模型边界和 Prompt Injection"
+    },
+    {
+      "enabled": true,
+      "name": "Satya Nadella",
+      "handle": "satyanadella",
+      "url": "https://x.com/satyanadella",
+      "category": "02 Google / DeepMind / Microsoft（21 位）",
+      "focus": "微软 CEO：AI 生产力、Copilot 落地"
+    },
+    {
+      "enabled": true,
+      "name": "Mustafa Suleyman",
+      "handle": "mustafasuleymn",
+      "url": "https://x.com/mustafasuleymn",
+      "category": "02 Google / DeepMind / Microsoft（21 位）",
+      "focus": "Microsoft AI：产品和智能体方向"
+    },
+    {
+      "enabled": true,
+      "name": "Kevin Scott",
+      "handle": "kevin_scott",
+      "url": "https://x.com/kevin_scott",
+      "category": "02 Google / DeepMind / Microsoft（21 位）",
+      "focus": "微软 CTO：AI 工程和开发者工具"
+    },
+    {
+      "enabled": true,
+      "name": "Mark Russinovich",
+      "handle": "markrussinovich",
+      "url": "https://x.com/markrussinovich",
+      "category": "02 Google / DeepMind / Microsoft（21 位）",
+      "focus": "Azure AI 可靠性、安全、架构"
+    },
+    {
+      "enabled": true,
+      "name": "Peter Lee",
+      "handle": "peteratmsr",
+      "url": "https://x.com/peteratmsr",
+      "category": "02 Google / DeepMind / Microsoft（21 位）",
+      "focus": "Microsoft Research、AI 在医疗等领域应用"
+    },
+    {
+      "enabled": true,
+      "name": "Xuedong Huang",
+      "handle": "xdh",
+      "url": "https://x.com/xdh",
+      "category": "02 Google / DeepMind / Microsoft（21 位）",
+      "focus": "微软语音 AI、基础模型研究"
+    },
+    {
+      "enabled": true,
+      "name": "Naveen Rao",
+      "handle": "NaveenGRao",
+      "url": "https://x.com/NaveenGRao",
+      "category": "02 Google / DeepMind / Microsoft（21 位）",
+      "focus": "大规模模型训练与系统工程"
+    },
+    {
+      "enabled": true,
+      "name": "Yann LeCun",
+      "handle": "ylecun",
+      "url": "https://x.com/ylecun",
+      "category": "03 Meta / NVIDIA / xAI / 核心实验室（15 位）",
+      "focus": "AMI Labs 创始人、世界模型、LLM 局限"
+    },
+    {
+      "enabled": true,
+      "name": "Alexandr Wang",
+      "handle": "alexandr_wang",
+      "url": "https://x.com/alexandr_wang",
+      "category": "03 Meta / NVIDIA / xAI / 核心实验室（15 位）",
+      "focus": "Meta AI/Scale AI 的数据和 AI 基础设施"
+    },
+    {
+      "enabled": true,
+      "name": "Soumith Chintala",
+      "handle": "soumithchintala",
+      "url": "https://x.com/soumithchintala",
+      "category": "03 Meta / NVIDIA / xAI / 核心实验室（15 位）",
+      "focus": "PyTorch、开源模型工程"
+    },
+    {
+      "enabled": true,
+      "name": "Hugo Larochelle",
+      "handle": "hugo_larochelle",
+      "url": "https://x.com/hugo_larochelle",
+      "category": "03 Meta / NVIDIA / xAI / 核心实验室（15 位）",
+      "focus": "Mila 科研负责人、深度学习研究、AI 教育"
+    },
+    {
+      "enabled": true,
+      "name": "Jim Fan",
+      "handle": "DrJimFan",
+      "url": "https://x.com/DrJimFan",
+      "category": "03 Meta / NVIDIA / xAI / 核心实验室（15 位）",
+      "focus": "NVIDIA 具身智能、机器人 Agent"
+    },
+    {
+      "enabled": true,
+      "name": "Anima Anandkumar",
+      "handle": "AnimaAnandkumar",
+      "url": "https://x.com/AnimaAnandkumar",
+      "category": "03 Meta / NVIDIA / xAI / 核心实验室（15 位）",
+      "focus": "AI for Science、前 NVIDIA 研究负责人"
+    },
+    {
+      "enabled": true,
+      "name": "Sanja Fidler",
+      "handle": "sanjafidler",
+      "url": "https://x.com/sanjafidler",
+      "category": "03 Meta / NVIDIA / xAI / 核心实验室（15 位）",
+      "focus": "视觉、世界模型、生成式 AI"
+    },
+    {
+      "enabled": true,
+      "name": "Greg Yang",
+      "handle": "TheGregYang",
+      "url": "https://x.com/TheGregYang",
+      "category": "03 Meta / NVIDIA / xAI / 核心实验室（15 位）",
+      "focus": "xAI Scaling Laws、μTransfer"
+    },
+    {
+      "enabled": true,
+      "name": "Jimmy Ba",
+      "handle": "jimmybyba",
+      "url": "https://x.com/jimmybyba",
+      "category": "03 Meta / NVIDIA / xAI / 核心实验室（15 位）",
+      "focus": "优化器 Adam、训练方法"
+    },
+    {
+      "enabled": true,
+      "name": "Yuhuai Wu",
+      "handle": "yuhuaiwu",
+      "url": "https://x.com/yuhuaiwu",
+      "category": "03 Meta / NVIDIA / xAI / 核心实验室（15 位）",
+      "focus": "数学推理和自动证明"
+    },
+    {
+      "enabled": true,
+      "name": "Igor Babuschkin",
+      "handle": "iabasin",
+      "url": "https://x.com/iabasin",
+      "category": "03 Meta / NVIDIA / xAI / 核心实验室（15 位）",
+      "focus": "大型模型训练、分布式工程"
+    },
+    {
+      "enabled": true,
+      "name": "George Hotz",
+      "handle": "realGeorgeHotz",
+      "url": "https://x.com/realGeorgeHotz",
+      "category": "03 Meta / NVIDIA / xAI / 核心实验室（15 位）",
+      "focus": "tinygrad、底层模型和工程实践"
+    },
+    {
+      "enabled": true,
+      "name": "Elon Musk",
+      "handle": "elonmusk",
+      "url": "https://x.com/elonmusk",
+      "category": "03 Meta / NVIDIA / xAI / 核心实验室（15 位）",
+      "focus": "xAI 与 Grok 的产品、公司方向（噪声较多）"
+    },
+    {
+      "enabled": true,
+      "name": "Michael J. Black",
+      "handle": "Michael_J_Black",
+      "url": "https://x.com/Michael_J_Black",
+      "category": "03 Meta / NVIDIA / xAI / 核心实验室（15 位）",
+      "focus": "人体建模、视觉、3D AI"
+    },
+    {
+      "enabled": true,
+      "name": "Jeff Clune",
+      "handle": "jeffclune",
+      "url": "https://x.com/jeffclune",
+      "category": "03 Meta / NVIDIA / xAI / 核心实验室（15 位）",
+      "focus": "开放式学习、进化算法与 AI Agent"
+    },
+    {
+      "enabled": true,
+      "name": "Arthur Mensch",
+      "handle": "arthurmensch",
+      "url": "https://x.com/arthurmensch",
+      "category": "04 其他前沿 AI 公司创始人 / 研究主管（33 位）",
+      "focus": "Mistral AI：开放模型、效率与产品"
+    },
+    {
+      "enabled": true,
+      "name": "Guillaume Lample",
+      "handle": "GusLample",
+      "url": "https://x.com/GusLample",
+      "category": "04 其他前沿 AI 公司创始人 / 研究主管（33 位）",
+      "focus": "Mistral 模型训练、机器翻译"
+    },
+    {
+      "enabled": true,
+      "name": "Timothée Lacroix",
+      "handle": "tlacroix_",
+      "url": "https://x.com/tlacroix_",
+      "category": "04 其他前沿 AI 公司创始人 / 研究主管（33 位）",
+      "focus": "Mistral 基础设施与高效模型"
+    },
+    {
+      "enabled": true,
+      "name": "Aidan Gomez",
+      "handle": "aidangomez",
+      "url": "https://x.com/aidangomez",
+      "category": "04 其他前沿 AI 公司创始人 / 研究主管（33 位）",
+      "focus": "Cohere CEO、Transformer 论文作者"
+    },
+    {
+      "enabled": true,
+      "name": "Joëlle Pineau",
+      "handle": "jpineau",
+      "url": "https://x.com/jpineau",
+      "category": "04 其他前沿 AI 公司创始人 / 研究主管（33 位）",
+      "focus": "可复现机器学习、开放研究"
+    },
+    {
+      "enabled": true,
+      "name": "Nick Frosst",
+      "handle": "nickfrosst",
+      "url": "https://x.com/nickfrosst",
+      "category": "04 其他前沿 AI 公司创始人 / 研究主管（33 位）",
+      "focus": "Cohere 语言模型、研究经验"
+    },
+    {
+      "enabled": true,
+      "name": "Clément Delangue",
+      "handle": "ClementDelangue",
+      "url": "https://x.com/ClementDelangue",
+      "category": "04 其他前沿 AI 公司创始人 / 研究主管（33 位）",
+      "focus": "Hugging Face CEO：开源 AI 生态"
+    },
+    {
+      "enabled": true,
+      "name": "Thomas Wolf",
+      "handle": "Thom_Wolf",
+      "url": "https://x.com/Thom_Wolf",
+      "category": "04 其他前沿 AI 公司创始人 / 研究主管（33 位）",
+      "focus": "Transformers、模型开放与研究"
+    },
+    {
+      "enabled": true,
+      "name": "Julien Chaumond",
+      "handle": "julien_c",
+      "url": "https://x.com/julien_c",
+      "category": "04 其他前沿 AI 公司创始人 / 研究主管（33 位）",
+      "focus": "模型部署和 Hugging Face 基础设施"
+    },
+    {
+      "enabled": true,
+      "name": "Mira Murati",
+      "handle": "miramurati",
+      "url": "https://x.com/miramurati",
+      "category": "04 其他前沿 AI 公司创始人 / 研究主管（33 位）",
+      "focus": "Thinking Machines：模型训练方向"
+    },
+    {
+      "enabled": true,
+      "name": "Ilya Sutskever",
+      "handle": "ilyasut",
+      "url": "https://x.com/ilyasut",
+      "category": "04 其他前沿 AI 公司创始人 / 研究主管（33 位）",
+      "focus": "SSI：基础研究、超智能"
+    },
+    {
+      "enabled": true,
+      "name": "Lilian Weng",
+      "handle": "lilianweng",
+      "url": "https://x.com/lilianweng",
+      "category": "04 其他前沿 AI 公司创始人 / 研究主管（33 位）",
+      "focus": "深度学习技术长文、Agent 研究"
+    },
+    {
+      "enabled": true,
+      "name": "David Ha",
+      "handle": "hardmaru",
+      "url": "https://x.com/hardmaru",
+      "category": "04 其他前沿 AI 公司创始人 / 研究主管（33 位）",
+      "focus": "Sakana AI：世界模型与研究实验"
+    },
+    {
+      "enabled": true,
+      "name": "Aravind Srinivas",
+      "handle": "AravSrinivas",
+      "url": "https://x.com/AravSrinivas",
+      "category": "04 其他前沿 AI 公司创始人 / 研究主管（33 位）",
+      "focus": "Perplexity：搜索、AI 产品方法"
+    },
+    {
+      "enabled": true,
+      "name": "Richard Socher",
+      "handle": "RichardSocher",
+      "url": "https://x.com/RichardSocher",
+      "category": "04 其他前沿 AI 公司创始人 / 研究主管（33 位）",
+      "focus": "You.com：企业 AI 搜索产品"
+    },
+    {
+      "enabled": true,
+      "name": "Emad Mostaque",
+      "handle": "EMostaque",
+      "url": "https://x.com/EMostaque",
+      "category": "04 其他前沿 AI 公司创始人 / 研究主管（33 位）",
+      "focus": "生成模型、开放式 AI 观点"
+    },
+    {
+      "enabled": true,
+      "name": "Cristóbal Valenzuela",
+      "handle": "c_valenzuelab",
+      "url": "https://x.com/c_valenzuelab",
+      "category": "04 其他前沿 AI 公司创始人 / 研究主管（33 位）",
+      "focus": "Runway 视频生成 AI 和创作实践"
+    },
+    {
+      "enabled": true,
+      "name": "David Holz",
+      "handle": "DavidSHolz",
+      "url": "https://x.com/DavidSHolz",
+      "category": "04 其他前沿 AI 公司创始人 / 研究主管（33 位）",
+      "focus": "Midjourney 生成式内容产品"
+    },
+    {
+      "enabled": true,
+      "name": "Robin Rombach",
+      "handle": "robinrombach",
+      "url": "https://x.com/robinrombach",
+      "category": "04 其他前沿 AI 公司创始人 / 研究主管（33 位）",
+      "focus": "Stable Diffusion、图像模型训练"
+    },
+    {
+      "enabled": true,
+      "name": "Patrick Esser",
+      "handle": "patrick_esser",
+      "url": "https://x.com/patrick_esser",
+      "category": "04 其他前沿 AI 公司创始人 / 研究主管（33 位）",
+      "focus": "扩散模型、视频生成研究"
+    },
+    {
+      "enabled": true,
+      "name": "Andreas Blattmann",
+      "handle": "a_blattmann",
+      "url": "https://x.com/a_blattmann",
+      "category": "04 其他前沿 AI 公司创始人 / 研究主管（33 位）",
+      "focus": "视频扩散模型和生成实验"
+    },
+    {
+      "enabled": true,
+      "name": "Dani Yogatama",
+      "handle": "DaniYogatama",
+      "url": "https://x.com/DaniYogatama",
+      "category": "04 其他前沿 AI 公司创始人 / 研究主管（33 位）",
+      "focus": "多模态研究、模型公司实践"
+    },
+    {
+      "enabled": true,
+      "name": "Yi Tay",
+      "handle": "ytay",
+      "url": "https://x.com/ytay",
+      "category": "04 其他前沿 AI 公司创始人 / 研究主管（33 位）",
+      "focus": "Reka 模型与 Transformer 研究"
+    },
+    {
+      "enabled": true,
+      "name": "Vipul Ved Prakash",
+      "handle": "vipulved",
+      "url": "https://x.com/vipulved",
+      "category": "04 其他前沿 AI 公司创始人 / 研究主管（33 位）",
+      "focus": "Together AI：推理、开源模型"
+    },
+    {
+      "enabled": true,
+      "name": "David Luan",
+      "handle": "jluan",
+      "url": "https://x.com/jluan",
+      "category": "04 其他前沿 AI 公司创始人 / 研究主管（33 位）",
+      "focus": "Adept/企业 Agent 产品实践"
+    },
+    {
+      "enabled": true,
+      "name": "Matt Shumer",
+      "handle": "mattshumer_",
+      "url": "https://x.com/mattshumer_",
+      "category": "04 其他前沿 AI 公司创始人 / 研究主管（33 位）",
+      "focus": "HyperWrite：Agent 产品、实际测试"
+    },
+    {
+      "enabled": true,
+      "name": "Tobi Lütke",
+      "handle": "tobi",
+      "url": "https://x.com/tobi",
+      "category": "04 其他前沿 AI 公司创始人 / 研究主管（33 位）",
+      "focus": "Shopify CEO：Agent 自动研究与 AI Coding"
+    },
+    {
+      "enabled": true,
+      "name": "Sridhar Ramaswamy",
+      "handle": "RamaswmySridhar",
+      "url": "https://x.com/RamaswmySridhar",
+      "category": "04 其他前沿 AI 公司创始人 / 研究主管（33 位）",
+      "focus": "企业数据、AI 搜索和平台"
+    },
+    {
+      "enabled": true,
+      "name": "Hanna Hajishirzi",
+      "handle": "HannaHajishirzi",
+      "url": "https://x.com/HannaHajishirzi",
+      "category": "04 其他前沿 AI 公司创始人 / 研究主管（33 位）",
+      "focus": "OLMo、开源训练与评测"
+    },
+    {
+      "enabled": true,
+      "name": "Oren Etzioni",
+      "handle": "etzioni",
+      "url": "https://x.com/etzioni",
+      "category": "04 其他前沿 AI 公司创始人 / 研究主管（33 位）",
+      "focus": "AI 创业、AI 实证研究"
+    },
+    {
+      "enabled": true,
+      "name": "Matt Pocock",
+      "handle": "mattpocockuk",
+      "url": "https://x.com/mattpocockuk",
+      "category": "05 AI Coding / Agent / 开发工具一线实践（34 位）",
+      "focus": "Prompt、Ralph 工作流、Agent Skills"
+    },
+    {
+      "enabled": true,
+      "name": "Dex Horthy",
+      "handle": "dexhorthy",
+      "url": "https://x.com/dexhorthy",
+      "category": "05 AI Coding / Agent / 开发工具一线实践（34 位）",
+      "focus": "Context Engineering、Agent 设计"
+    },
+    {
+      "enabled": true,
+      "name": "Simon Willison",
+      "handle": "simonw",
+      "url": "https://x.com/simonw",
+      "category": "05 AI Coding / Agent / 开发工具一线实践（34 位）",
+      "focus": "模型实测、Prompt Injection、工具链"
+    },
+    {
+      "enabled": true,
+      "name": "Harrison Chase",
+      "handle": "hwchase17",
+      "url": "https://x.com/hwchase17",
+      "category": "05 AI Coding / Agent / 开发工具一线实践（34 位）",
+      "focus": "LangChain/LangGraph、Agent 工作流"
+    },
+    {
+      "enabled": true,
+      "name": "Jerry Liu",
+      "handle": "jerryjliu0",
+      "url": "https://x.com/jerryjliu0",
+      "category": "05 AI Coding / Agent / 开发工具一线实践（34 位）",
+      "focus": "LlamaIndex、RAG、数据 Agent"
+    },
+    {
+      "enabled": true,
+      "name": "Lee Robinson",
+      "handle": "leerob",
+      "url": "https://x.com/leerob",
+      "category": "05 AI Coding / Agent / 开发工具一线实践（34 位）",
+      "focus": "Cursor、AI Coding 工程和产品教学"
+    },
+    {
+      "enabled": true,
+      "name": "Eugene Yan",
+      "handle": "eugeneyan",
+      "url": "https://x.com/eugeneyan",
+      "category": "05 AI Coding / Agent / 开发工具一线实践（34 位）",
+      "focus": "推荐系统、生产级 LLM、评测"
+    },
+    {
+      "enabled": true,
+      "name": "Hamel Husain",
+      "handle": "HamelHusain",
+      "url": "https://x.com/HamelHusain",
+      "category": "05 AI Coding / Agent / 开发工具一线实践（34 位）",
+      "focus": "Evals、失败案例、AI 工程实践"
+    },
+    {
+      "enabled": true,
+      "name": "Shreya Shankar",
+      "handle": "sh_reya",
+      "url": "https://x.com/sh_reya",
+      "category": "05 AI Coding / Agent / 开发工具一线实践（34 位）",
+      "focus": "数据 Agent、Evals、错误分析"
+    },
+    {
+      "enabled": true,
+      "name": "Jason Wei",
+      "handle": "_jasonwei",
+      "url": "https://x.com/_jasonwei",
+      "category": "05 AI Coding / Agent / 开发工具一线实践（34 位）",
+      "focus": "Meta AI 研究员；推理模型、CoT"
+    },
+    {
+      "enabled": true,
+      "name": "Mckay Wrigley",
+      "handle": "mckaywrigley",
+      "url": "https://x.com/mckaywrigley",
+      "category": "05 AI Coding / Agent / 开发工具一线实践（34 位）",
+      "focus": "AI 产品构建、Cursor 实用教程"
+    },
+    {
+      "enabled": true,
+      "name": "Pieter Levels",
+      "handle": "levelsio",
+      "url": "https://x.com/levelsio",
+      "category": "05 AI Coding / Agent / 开发工具一线实践（34 位）",
+      "focus": "Vibe Coding、AI 产品实战"
+    },
+    {
+      "enabled": true,
+      "name": "Paul Graham",
+      "handle": "paulg",
+      "url": "https://x.com/paulg",
+      "category": "05 AI Coding / Agent / 开发工具一线实践（34 位）",
+      "focus": "AI 软件开发和创业洞察"
+    },
+    {
+      "enabled": true,
+      "name": "DHH",
+      "handle": "dhh",
+      "url": "https://x.com/dhh",
+      "category": "05 AI Coding / Agent / 开发工具一线实践（34 位）",
+      "focus": "软件工程、AI 编程、开发体验"
+    },
+    {
+      "enabled": true,
+      "name": "Gergely Orosz",
+      "handle": "GergelyOrosz",
+      "url": "https://x.com/GergelyOrosz",
+      "category": "05 AI Coding / Agent / 开发工具一线实践（34 位）",
+      "focus": "AI Coding 对工程团队的改变"
+    },
+    {
+      "enabled": true,
+      "name": "Yohei Nakajima",
+      "handle": "yoheinakajima",
+      "url": "https://x.com/yoheinakajima",
+      "category": "05 AI Coding / Agent / 开发工具一线实践（34 位）",
+      "focus": "BabyAGI、Agent 架构和实验"
+    },
+    {
+      "enabled": true,
+      "name": "Omar Khattab",
+      "handle": "lateinteraction",
+      "url": "https://x.com/lateinteraction",
+      "category": "05 AI Coding / Agent / 开发工具一线实践（34 位）",
+      "focus": "DSPy、提示词优化、检索"
+    },
+    {
+      "enabled": true,
+      "name": "Georgi Gerganov",
+      "handle": "ggerganov",
+      "url": "https://x.com/ggerganov",
+      "category": "05 AI Coding / Agent / 开发工具一线实践（34 位）",
+      "focus": "llama.cpp、本地推理与优化"
+    },
+    {
+      "enabled": true,
+      "name": "Alex Volkov",
+      "handle": "altryne",
+      "url": "https://x.com/altryne",
+      "category": "05 AI Coding / Agent / 开发工具一线实践（34 位）",
+      "focus": "开源模型、工具测试与发布"
+    },
+    {
+      "enabled": true,
+      "name": "Abubakar Abid",
+      "handle": "abidlabs",
+      "url": "https://x.com/abidlabs",
+      "category": "05 AI Coding / Agent / 开发工具一线实践（34 位）",
+      "focus": "Gradio、AI Demo、模型应用"
+    },
+    {
+      "enabled": true,
+      "name": "Lewis Tunstall",
+      "handle": "_lewtun",
+      "url": "https://x.com/_lewtun",
+      "category": "05 AI Coding / Agent / 开发工具一线实践（34 位）",
+      "focus": "开源模型微调和工程教程"
+    },
+    {
+      "enabled": true,
+      "name": "Younes Belkada",
+      "handle": "younesbelkada",
+      "url": "https://x.com/younesbelkada",
+      "category": "05 AI Coding / Agent / 开发工具一线实践（34 位）",
+      "focus": "量化推理、模型优化教程"
+    },
+    {
+      "enabled": true,
+      "name": "Philipp Schmid",
+      "handle": "_philschmid",
+      "url": "https://x.com/_philschmid",
+      "category": "05 AI Coding / Agent / 开发工具一线实践（34 位）",
+      "focus": "模型部署、微调、Agent 工程"
+    },
+    {
+      "enabled": true,
+      "name": "Maxime Labonne",
+      "handle": "maximelabonne",
+      "url": "https://x.com/maximelabonne",
+      "category": "05 AI Coding / Agent / 开发工具一线实践（34 位）",
+      "focus": "微调、量化、LLM 教程"
+    },
+    {
+      "enabled": true,
+      "name": "Sebastian Raschka",
+      "handle": "rasbt",
+      "url": "https://x.com/rasbt",
+      "category": "05 AI Coding / Agent / 开发工具一线实践（34 位）",
+      "focus": "LLM 从零实现、架构解读"
+    },
+    {
+      "enabled": true,
+      "name": "Jay Alammar",
+      "handle": "jalammar",
+      "url": "https://x.com/jalammar",
+      "category": "05 AI Coding / Agent / 开发工具一线实践（34 位）",
+      "focus": "Transformer/BERT 可视化教学"
+    },
+    {
+      "enabled": true,
+      "name": "James Briggs",
+      "handle": "jamesbriggs",
+      "url": "https://x.com/jamesbriggs",
+      "category": "05 AI Coding / Agent / 开发工具一线实践（34 位）",
+      "focus": "向量检索、RAG、Agent 实战"
+    },
+    {
+      "enabled": true,
+      "name": "Cole Medin",
+      "handle": "ColeMedin",
+      "url": "https://x.com/ColeMedin",
+      "category": "05 AI Coding / Agent / 开发工具一线实践（34 位）",
+      "focus": "n8n、RAG、本地 Agent"
+    },
+    {
+      "enabled": true,
+      "name": "Dave Ebbelaar",
+      "handle": "daboratory",
+      "url": "https://x.com/daboratory",
+      "category": "05 AI Coding / Agent / 开发工具一线实践（34 位）",
+      "focus": "AI 自动化、Python Agent"
+    },
+    {
+      "enabled": true,
+      "name": "AI Jason",
+      "handle": "AIJasonZ",
+      "url": "https://x.com/AIJasonZ",
+      "category": "05 AI Coding / Agent / 开发工具一线实践（34 位）",
+      "focus": "AI Agent 项目与系统搭建"
+    },
+    {
+      "enabled": true,
+      "name": "Elvis Saravia",
+      "handle": "omarsar0",
+      "url": "https://x.com/omarsar0",
+      "category": "05 AI Coding / Agent / 开发工具一线实践（34 位）",
+      "focus": "DAIR.AI Prompt Engineering Guide"
+    },
+    {
+      "enabled": true,
+      "name": "Nathan Lambert",
+      "handle": "natolambert",
+      "url": "https://x.com/natolambert",
+      "category": "06 模型工程 / 训练 / LLM 系统（30 位）",
+      "focus": "RLHF、后训练与开放模型评测"
+    },
+    {
+      "enabled": true,
+      "name": "Tri Dao",
+      "handle": "tri_dao",
+      "url": "https://x.com/tri_dao",
+      "category": "06 模型工程 / 训练 / LLM 系统（30 位）",
+      "focus": "FlashAttention、序列模型性能"
+    },
+    {
+      "enabled": true,
+      "name": "Albert Gu",
+      "handle": "_albertgu",
+      "url": "https://x.com/_albertgu",
+      "category": "06 模型工程 / 训练 / LLM 系统（30 位）",
+      "focus": "Mamba、状态空间模型研究"
+    },
+    {
+      "enabled": true,
+      "name": "Tim Dettmers",
+      "handle": "Tim_Dettmers",
+      "url": "https://x.com/Tim_Dettmers",
+      "category": "06 模型工程 / 训练 / LLM 系统（30 位）",
+      "focus": "量化、QLoRA、训练优化"
+    },
+    {
+      "enabled": true,
+      "name": "Tim Salimans",
+      "handle": "tim_salimans",
+      "url": "https://x.com/tim_salimans",
+      "category": "06 模型工程 / 训练 / LLM 系统（30 位）",
+      "focus": "生成模型和模型评测"
+    },
+    {
+      "enabled": true,
+      "name": "Yang Song",
+      "handle": "yang_song",
+      "url": "https://x.com/yang_song",
+      "category": "06 模型工程 / 训练 / LLM 系统（30 位）",
+      "focus": "Score-based、扩散模型"
+    },
+    {
+      "enabled": true,
+      "name": "Sergey Levine",
+      "handle": "svlevine",
+      "url": "https://x.com/svlevine",
+      "category": "06 模型工程 / 训练 / LLM 系统（30 位）",
+      "focus": "强化学习、机器人操控"
+    },
+    {
+      "enabled": true,
+      "name": "Pieter Abbeel",
+      "handle": "pabbeel",
+      "url": "https://x.com/pabbeel",
+      "category": "06 模型工程 / 训练 / LLM 系统（30 位）",
+      "focus": "机器人学习、RL、创业实践"
+    },
+    {
+      "enabled": true,
+      "name": "Chelsea Finn",
+      "handle": "chelseabfinn",
+      "url": "https://x.com/chelseabfinn",
+      "category": "06 模型工程 / 训练 / LLM 系统（30 位）",
+      "focus": "元学习、机器人策略"
+    },
+    {
+      "enabled": true,
+      "name": "Percy Liang",
+      "handle": "percyliang",
+      "url": "https://x.com/percyliang",
+      "category": "06 模型工程 / 训练 / LLM 系统（30 位）",
+      "focus": "HELM 模型评测、透明度"
+    },
+    {
+      "enabled": true,
+      "name": "Daphne Koller",
+      "handle": "DaphneKoller",
+      "url": "https://x.com/DaphneKoller",
+      "category": "06 模型工程 / 训练 / LLM 系统（30 位）",
+      "focus": "AI 制药与机器学习应用"
+    },
+    {
+      "enabled": true,
+      "name": "Anca Dragan",
+      "handle": "ancadragan",
+      "url": "https://x.com/ancadragan",
+      "category": "06 模型工程 / 训练 / LLM 系统（30 位）",
+      "focus": "人机协作、安全与机器人"
+    },
+    {
+      "enabled": true,
+      "name": "Been Kim",
+      "handle": "_beenkim",
+      "url": "https://x.com/_beenkim",
+      "category": "06 模型工程 / 训练 / LLM 系统（30 位）",
+      "focus": "模型可解释性研究"
+    },
+    {
+      "enabled": true,
+      "name": "Dawn Song",
+      "handle": "dawnsongtweets",
+      "url": "https://x.com/dawnsongtweets",
+      "category": "06 模型工程 / 训练 / LLM 系统（30 位）",
+      "focus": "AI 安全、隐私、可信 AI"
+    },
+    {
+      "enabled": true,
+      "name": "Max Welling",
+      "handle": "wellingmax",
+      "url": "https://x.com/wellingmax",
+      "category": "06 模型工程 / 训练 / LLM 系统（30 位）",
+      "focus": "生成建模、几何深度学习"
+    },
+    {
+      "enabled": true,
+      "name": "Ross Girshick",
+      "handle": "rossgirshick",
+      "url": "https://x.com/rossgirshick",
+      "category": "06 模型工程 / 训练 / LLM 系统（30 位）",
+      "focus": "视觉基础模型和目标检测"
+    },
+    {
+      "enabled": true,
+      "name": "Alexei Efros",
+      "handle": "efrosgans",
+      "url": "https://x.com/efrosgans",
+      "category": "06 模型工程 / 训练 / LLM 系统（30 位）",
+      "focus": "计算机视觉、生成模型"
+    },
+    {
+      "enabled": true,
+      "name": "Pranav Rajpurkar",
+      "handle": "pranavrajpurkar",
+      "url": "https://x.com/pranavrajpurkar",
+      "category": "06 模型工程 / 训练 / LLM 系统（30 位）",
+      "focus": "医疗 AI、临床 Agent"
+    },
+    {
+      "enabled": true,
+      "name": "Blake Richards",
+      "handle": "tyrell_turing",
+      "url": "https://x.com/tyrell_turing",
+      "category": "06 模型工程 / 训练 / LLM 系统（30 位）",
+      "focus": "神经科学与深度学习"
+    },
+    {
+      "enabled": true,
+      "name": "Frank Willett",
+      "handle": "WillettNeuro",
+      "url": "https://x.com/WillettNeuro",
+      "category": "06 模型工程 / 训练 / LLM 系统（30 位）",
+      "focus": "脑机接口、神经语言解码"
+    },
+    {
+      "enabled": true,
+      "name": "Jürgen Schmidhuber",
+      "handle": "SchmidhuberAI",
+      "url": "https://x.com/SchmidhuberAI",
+      "category": "06 模型工程 / 训练 / LLM 系统（30 位）",
+      "focus": "模型历史、递归网络研究"
+    },
+    {
+      "enabled": true,
+      "name": "Yoshua Bengio",
+      "handle": "Yoshua_Bengio",
+      "url": "https://x.com/Yoshua_Bengio",
+      "category": "06 模型工程 / 训练 / LLM 系统（30 位）",
+      "focus": "AI 科学与安全研究"
+    },
+    {
+      "enabled": true,
+      "name": "Geoffrey Hinton",
+      "handle": "geoffreyhinton",
+      "url": "https://x.com/geoffreyhinton",
+      "category": "06 模型工程 / 训练 / LLM 系统（30 位）",
+      "focus": "深度学习能力与风险反思"
+    },
+    {
+      "enabled": true,
+      "name": "Fei-Fei Li",
+      "handle": "drfeifei",
+      "url": "https://x.com/drfeifei",
+      "category": "06 模型工程 / 训练 / LLM 系统（30 位）",
+      "focus": "空间智能、机器人、AI 视觉"
+    },
+    {
+      "enabled": true,
+      "name": "Andrew Ng",
+      "handle": "AndrewYNg",
+      "url": "https://x.com/AndrewYNg",
+      "category": "06 模型工程 / 训练 / LLM 系统（30 位）",
+      "focus": "Agentic Workflow、工程课程"
+    },
+    {
+      "enabled": true,
+      "name": "François Chollet",
+      "handle": "fchollet",
+      "url": "https://x.com/fchollet",
+      "category": "06 模型工程 / 训练 / LLM 系统（30 位）",
+      "focus": "ARC-AGI、推理测试和 Keras"
+    },
+    {
+      "enabled": true,
+      "name": "Ian Hogarth",
+      "handle": "soundboy",
+      "url": "https://x.com/soundboy",
+      "category": "06 模型工程 / 训练 / LLM 系统（30 位）",
+      "focus": "AI 产业投资、安全与治理"
+    },
+    {
+      "enabled": true,
+      "name": "Sara Hooker",
+      "handle": "sarahookr",
+      "url": "https://x.com/sarahookr",
+      "category": "06 模型工程 / 训练 / LLM 系统（30 位）",
+      "focus": "模型效率与 AI 研究公平性"
+    },
+    {
+      "enabled": true,
+      "name": "Regina Barzilay",
+      "handle": "BarzilayRegina",
+      "url": "https://x.com/BarzilayRegina",
+      "category": "06 模型工程 / 训练 / LLM 系统（30 位）",
+      "focus": "医疗 NLP、AI for science"
+    },
+    {
+      "enabled": true,
+      "name": "Zachary Lipton",
+      "handle": "zacharylipton",
+      "url": "https://x.com/zacharylipton",
+      "category": "06 模型工程 / 训练 / LLM 系统（30 位）",
+      "focus": "CMU 机器学习、临床 AI、模型可靠性"
+    },
+    {
+      "enabled": true,
+      "name": "Ethan Mollick",
+      "handle": "emollick",
+      "url": "https://x.com/emollick",
+      "category": "07 AI 产品 / Prompt / 组织应用（19 位）",
+      "focus": "工作场景 AI 实验和 Prompt 实例"
+    },
+    {
+      "enabled": true,
+      "name": "Lenny Rachitsky",
+      "handle": "lennysan",
+      "url": "https://x.com/lennysan",
+      "category": "07 AI 产品 / Prompt / 组织应用（19 位）",
+      "focus": "AI 产品管理、Agent 应用访谈"
+    },
+    {
+      "enabled": true,
+      "name": "Sarah Guo",
+      "handle": "saranormous",
+      "url": "https://x.com/saranormous",
+      "category": "07 AI 产品 / Prompt / 组织应用（19 位）",
+      "focus": "AI 创业、产品和工作流观察"
+    },
+    {
+      "enabled": true,
+      "name": "Elad Gil",
+      "handle": "eladgil",
+      "url": "https://x.com/eladgil",
+      "category": "07 AI 产品 / Prompt / 组织应用（19 位）",
+      "focus": "AI 产品、企业技术趋势"
+    },
+    {
+      "enabled": true,
+      "name": "Daniel Gross",
+      "handle": "danielgross",
+      "url": "https://x.com/danielgross",
+      "category": "07 AI 产品 / Prompt / 组织应用（19 位）",
+      "focus": "AI 产品投资和技术判断"
+    },
+    {
+      "enabled": true,
+      "name": "Erik Brynjolfsson",
+      "handle": "erikbryn",
+      "url": "https://x.com/erikbryn",
+      "category": "07 AI 产品 / Prompt / 组织应用（19 位）",
+      "focus": "AI 生产力的实证研究"
+    },
+    {
+      "enabled": true,
+      "name": "Cassie Kozyrkov",
+      "handle": "quaesita",
+      "url": "https://x.com/quaesita",
+      "category": "07 AI 产品 / Prompt / 组织应用（19 位）",
+      "focus": "数据驱动决策、AI 应用原则"
+    },
+    {
+      "enabled": true,
+      "name": "Allie K. Miller",
+      "handle": "alliekmiller",
+      "url": "https://x.com/alliekmiller",
+      "category": "07 AI 产品 / Prompt / 组织应用（19 位）",
+      "focus": "企业 AI 使用案例与技巧"
+    },
+    {
+      "enabled": true,
+      "name": "Tina Huang",
+      "handle": "TinaHuang1",
+      "url": "https://x.com/TinaHuang1",
+      "category": "07 AI 产品 / Prompt / 组织应用（19 位）",
+      "focus": "AI 日常生产力和学习工作流"
+    },
+    {
+      "enabled": true,
+      "name": "Ben Tossell",
+      "handle": "bentossell",
+      "url": "https://x.com/bentossell",
+      "category": "07 AI 产品 / Prompt / 组织应用（19 位）",
+      "focus": "AI 工具、自动化和效率实验"
+    },
+    {
+      "enabled": true,
+      "name": "Ruben Hassid",
+      "handle": "rubenhassid",
+      "url": "https://x.com/rubenhassid",
+      "category": "07 AI 产品 / Prompt / 组织应用（19 位）",
+      "focus": "AI 内容创作、实用 Prompt"
+    },
+    {
+      "enabled": true,
+      "name": "Kevin Stratvert",
+      "handle": "KevinStratvert",
+      "url": "https://x.com/KevinStratvert",
+      "category": "07 AI 产品 / Prompt / 组织应用（19 位）",
+      "focus": "微软生态 AI 工具实操教程"
+    },
+    {
+      "enabled": true,
+      "name": "Sam Witteveen",
+      "handle": "samwitteveenai",
+      "url": "https://x.com/samwitteveenai",
+      "category": "07 AI 产品 / Prompt / 组织应用（19 位）",
+      "focus": "Google Gemini、Agent 项目教程"
+    },
+    {
+      "enabled": true,
+      "name": "Abhishek Thakur",
+      "handle": "abhi1thakur",
+      "url": "https://x.com/abhi1thakur",
+      "category": "07 AI 产品 / Prompt / 组织应用（19 位）",
+      "focus": "Kaggle、微调、应用建模"
+    },
+    {
+      "enabled": true,
+      "name": "Santiago Valdarrama",
+      "handle": "svpino",
+      "url": "https://x.com/svpino",
+      "category": "07 AI 产品 / Prompt / 组织应用（19 位）",
+      "focus": "机器学习实用技术、代码"
+    },
+    {
+      "enabled": true,
+      "name": "Jeremy Howard",
+      "handle": "jeremyphoward",
+      "url": "https://x.com/jeremyphoward",
+      "category": "07 AI 产品 / Prompt / 组织应用（19 位）",
+      "focus": "fast.ai 教育和可复现代码"
+    },
+    {
+      "enabled": true,
+      "name": "Jérôme Pesenti",
+      "handle": "jeromepesenti",
+      "url": "https://x.com/jeromepesenti",
+      "category": "07 AI 产品 / Prompt / 组织应用（19 位）",
+      "focus": "产业 AI 研究与落地观察"
+    },
+    {
+      "enabled": true,
+      "name": "Arvind Narayanan",
+      "handle": "random_walker",
+      "url": "https://x.com/random_walker",
+      "category": "07 AI 产品 / Prompt / 组织应用（19 位）",
+      "focus": "AI Snake Oil、产品风险与辨伪"
+    },
+    {
+      "enabled": true,
+      "name": "Sayash Kapoor",
+      "handle": "sayashk",
+      "url": "https://x.com/sayashk",
+      "category": "07 AI 产品 / Prompt / 组织应用（19 位）",
+      "focus": "模型评测、AI 产品验证"
+    },
+    {
+      "enabled": true,
+      "name": "Gary Marcus",
+      "handle": "GaryMarcus",
+      "url": "https://x.com/GaryMarcus",
+      "category": "08 研究前沿、批评、访谈与跨领域专家（23 位）",
+      "focus": "LLM 局限、可靠性和失败模式"
+    },
+    {
+      "enabled": true,
+      "name": "Melanie Mitchell",
+      "handle": "MelMitchell1",
+      "url": "https://x.com/MelMitchell1",
+      "category": "08 研究前沿、批评、访谈与跨领域专家（23 位）",
+      "focus": "模型推理能力、评测缺陷"
+    },
+    {
+      "enabled": true,
+      "name": "Timnit Gebru",
+      "handle": "timnitGebru",
+      "url": "https://x.com/timnitGebru",
+      "category": "08 研究前沿、批评、访谈与跨领域专家（23 位）",
+      "focus": "AI 伦理、模型社会影响"
+    },
+    {
+      "enabled": true,
+      "name": "Emily Bender",
+      "handle": "emilymbender",
+      "url": "https://x.com/emilymbender",
+      "category": "08 研究前沿、批评、访谈与跨领域专家（23 位）",
+      "focus": "语言模型局限、AI 宣传审查"
+    },
+    {
+      "enabled": true,
+      "name": "Kate Crawford",
+      "handle": "katecrawford",
+      "url": "https://x.com/katecrawford",
+      "category": "08 研究前沿、批评、访谈与跨领域专家（23 位）",
+      "focus": "AI 数据、社会影响、研究"
+    },
+    {
+      "enabled": true,
+      "name": "Rodney Brooks",
+      "handle": "rodneyabrooks",
+      "url": "https://x.com/rodneyabrooks",
+      "category": "08 研究前沿、批评、访谈与跨领域专家（23 位）",
+      "focus": "机器人落地、反炒作经验"
+    },
+    {
+      "enabled": true,
+      "name": "Connor Leahy",
+      "handle": "NPCollapse",
+      "url": "https://x.com/NPCollapse",
+      "category": "08 研究前沿、批评、访谈与跨领域专家（23 位）",
+      "focus": "模型安全和系统风险"
+    },
+    {
+      "enabled": true,
+      "name": "Eliezer Yudkowsky",
+      "handle": "ESYudkowsky",
+      "url": "https://x.com/ESYudkowsky",
+      "category": "08 研究前沿、批评、访谈与跨领域专家（23 位）",
+      "focus": "AI 对齐、安全风险"
+    },
+    {
+      "enabled": true,
+      "name": "Richard Ngo",
+      "handle": "RichardMCNgo",
+      "url": "https://x.com/RichardMCNgo",
+      "category": "08 研究前沿、批评、访谈与跨领域专家（23 位）",
+      "focus": "AI 安全、治理和研究分析"
+    },
+    {
+      "enabled": true,
+      "name": "Stuart Russell",
+      "handle": "StuartJRussell",
+      "url": "https://x.com/StuartJRussell",
+      "category": "08 研究前沿、批评、访谈与跨领域专家（23 位）",
+      "focus": "AI 控制与长期技术方向"
+    },
+    {
+      "enabled": true,
+      "name": "Joanna Bryson",
+      "handle": "j2bryson",
+      "url": "https://x.com/j2bryson",
+      "category": "08 研究前沿、批评、访谈与跨领域专家（23 位）",
+      "focus": "AI 伦理、产品与政策"
+    },
+    {
+      "enabled": true,
+      "name": "Deb Raji",
+      "handle": "rajiinio",
+      "url": "https://x.com/rajiinio",
+      "category": "08 研究前沿、批评、访谈与跨领域专家（23 位）",
+      "focus": "算法审核、AI 系统测试与失败案例"
+    },
+    {
+      "enabled": true,
+      "name": "Lex Fridman",
+      "handle": "lexfridman",
+      "url": "https://x.com/lexfridman",
+      "category": "08 研究前沿、批评、访谈与跨领域专家（23 位）",
+      "focus": "顶尖研究员 CEO 深度技术访谈"
+    },
+    {
+      "enabled": true,
+      "name": "Dwarkesh Patel",
+      "handle": "dwarkesh_sp",
+      "url": "https://x.com/dwarkesh_sp",
+      "category": "08 研究前沿、批评、访谈与跨领域专家（23 位）",
+      "focus": "模型、算力、AI 公司深访"
+    },
+    {
+      "enabled": true,
+      "name": "Tim Scarfe",
+      "handle": "ecsquendor",
+      "url": "https://x.com/ecsquendor",
+      "category": "08 研究前沿、批评、访谈与跨领域专家（23 位）",
+      "focus": "Machine Learning Street Talk 深访"
+    },
+    {
+      "enabled": true,
+      "name": "Yannic Kilcher",
+      "handle": "ykilcher",
+      "url": "https://x.com/ykilcher",
+      "category": "08 研究前沿、批评、访谈与跨领域专家（23 位）",
+      "focus": "论文精读、架构批判"
+    },
+    {
+      "enabled": true,
+      "name": "Karen Hao",
+      "handle": "_KarenHao",
+      "url": "https://x.com/_KarenHao",
+      "category": "08 研究前沿、批评、访谈与跨领域专家（23 位）",
+      "focus": "前沿实验室调查和模型产业问题"
+    },
+    {
+      "enabled": true,
+      "name": "Will Knight",
+      "handle": "willknight",
+      "url": "https://x.com/willknight",
+      "category": "08 研究前沿、批评、访谈与跨领域专家（23 位）",
+      "focus": "AI 公司与技术趋势深度报道"
+    },
+    {
+      "enabled": true,
+      "name": "Cade Metz",
+      "handle": "CadeMetz",
+      "url": "https://x.com/CadeMetz",
+      "category": "08 研究前沿、批评、访谈与跨领域专家（23 位）",
+      "focus": "大模型实验室和 AI 产业调查"
+    },
+    {
+      "enabled": true,
+      "name": "Kevin Roose",
+      "handle": "kevinroose",
+      "url": "https://x.com/kevinroose",
+      "category": "08 研究前沿、批评、访谈与跨领域专家（23 位）",
+      "focus": "AI 真实使用实验、社会影响"
+    },
+    {
+      "enabled": true,
+      "name": "Casey Newton",
+      "handle": "CaseyNewton",
+      "url": "https://x.com/CaseyNewton",
+      "category": "08 研究前沿、批评、访谈与跨领域专家（23 位）",
+      "focus": "AI 产品决策和行业分析"
+    },
+    {
+      "enabled": true,
+      "name": "Nathan Benaich",
+      "handle": "nathanbenaich",
+      "url": "https://x.com/nathanbenaich",
+      "category": "08 研究前沿、批评、访谈与跨领域专家（23 位）",
+      "focus": "State of AI、研究/产业观察"
+    },
+    {
+      "enabled": true,
+      "name": "Azeem Azhar",
+      "handle": "azeem",
+      "url": "https://x.com/azeem",
+      "category": "08 研究前沿、批评、访谈与跨领域专家（23 位）",
+      "focus": "AI 对经济和组织的改变"
+    },
+    {
+      "enabled": true,
+      "name": "宝玉",
+      "handle": "dotey",
+      "url": "https://x.com/dotey",
+      "category": "09 中文 AI 技术 / 一线应用创作者（12 位）",
+      "focus": "Claude Code、提示词和实践深度解读"
+    },
+    {
+      "enabled": true,
+      "name": "歸藏",
+      "handle": "op7418",
+      "url": "https://x.com/op7418",
+      "category": "09 中文 AI 技术 / 一线应用创作者（12 位）",
+      "focus": "AI 图片视频 Prompt 和工具工作流"
+    },
+    {
+      "enabled": true,
+      "name": "李继刚",
+      "handle": "lijigang",
+      "url": "https://x.com/lijigang",
+      "category": "09 中文 AI 技术 / 一线应用创作者（12 位）",
+      "focus": "结构化 Prompt、表达方式"
+    },
+    {
+      "enabled": true,
+      "name": "数字生命卡兹克",
+      "handle": "Khazix0918",
+      "url": "https://x.com/Khazix0918",
+      "category": "09 中文 AI 技术 / 一线应用创作者（12 位）",
+      "focus": "AI 应用、实操和工具测试"
+    },
+    {
+      "enabled": true,
+      "name": "向阳乔木",
+      "handle": "vista8",
+      "url": "https://x.com/vista8",
+      "category": "09 中文 AI 技术 / 一线应用创作者（12 位）",
+      "focus": "AI 产品、工具和工程经验"
+    },
+    {
+      "enabled": true,
+      "name": "橘子",
+      "handle": "oran_ge",
+      "url": "https://x.com/oran_ge",
+      "category": "09 中文 AI 技术 / 一线应用创作者（12 位）",
+      "focus": "AI 应用与工作流实践"
+    },
+    {
+      "enabled": true,
+      "name": "Berryxia",
+      "handle": "berryxia",
+      "url": "https://x.com/berryxia",
+      "category": "09 中文 AI 技术 / 一线应用创作者（12 位）",
+      "focus": "AI 硬件、工具资讯与应用观察"
+    },
+    {
+      "enabled": true,
+      "name": "李开复",
+      "handle": "kaifulee",
+      "url": "https://x.com/kaifulee",
+      "category": "09 中文 AI 技术 / 一线应用创作者（12 位）",
+      "focus": "01.AI、模型产业与应用方向"
+    },
+    {
+      "enabled": true,
+      "name": "阮一峰",
+      "handle": "ruanyf",
+      "url": "https://x.com/ruanyf",
+      "category": "09 中文 AI 技术 / 一线应用创作者（12 位）",
+      "focus": "技术周刊、AI 开发工具"
+    },
+    {
+      "enabled": true,
+      "name": "花叔",
+      "handle": "AlchainHust",
+      "url": "https://x.com/AlchainHust",
+      "category": "09 中文 AI 技术 / 一线应用创作者（12 位）",
+      "focus": "Agent Skill 质量评测和进化实验"
+    },
+    {
+      "enabled": true,
+      "name": "Meathill",
+      "handle": "meathill1",
+      "url": "https://x.com/meathill1",
+      "category": "09 中文 AI 技术 / 一线应用创作者（12 位）",
+      "focus": "Claude Code、代码维护与 Skills"
+    },
+    {
+      "enabled": true,
+      "name": "Christopher Manning",
+      "handle": "chrmanning",
+      "url": "https://x.com/chrmanning",
+      "category": "10 一线研究扩展：Google / Meta / Stanford / AI 工程（16 位）",
+      "focus": "斯坦福 NLP、模型进展及 AI 教学"
+    },
+    {
+      "enabled": true,
+      "name": "Kyunghyun Cho",
+      "handle": "kchonyc",
+      "url": "https://x.com/kchonyc",
+      "category": "10 一线研究扩展：Google / Meta / Stanford / AI 工程（16 位）",
+      "focus": "深度学习、机器翻译、模型研究经验"
+    },
+    {
+      "enabled": true,
+      "name": "Jacob Andreas",
+      "handle": "jacobandreas",
+      "url": "https://x.com/jacobandreas",
+      "category": "10 一线研究扩展：Google / Meta / Stanford / AI 工程（16 位）",
+      "focus": "MIT NLP、Agent 与 LLM 行为分析"
+    },
+    {
+      "enabled": true,
+      "name": "Sebastian Ruder",
+      "handle": "seb_ruder",
+      "url": "https://x.com/seb_ruder",
+      "category": "10 一线研究扩展：Google / Meta / Stanford / AI 工程（16 位）",
+      "focus": "NLP、多语种模型、检索与实战评测"
+    },
+    {
+      "enabled": true,
+      "name": "Shane Gu",
+      "handle": "shaneguML",
+      "url": "https://x.com/shaneguML",
+      "category": "10 一线研究扩展：Google / Meta / Stanford / AI 工程（16 位）",
+      "focus": "Google DeepMind Gemini 多模态与模型研发"
+    },
+    {
+      "enabled": true,
+      "name": "Eric Jang",
+      "handle": "ericjang11",
+      "url": "https://x.com/ericjang11",
+      "category": "10 一线研究扩展：Google / Meta / Stanford / AI 工程（16 位）",
+      "focus": "具身智能、机器人模型实验"
+    },
+    {
+      "enabled": true,
+      "name": "Luke Zettlemoyer",
+      "handle": "LukeZettlemoyer",
+      "url": "https://x.com/LukeZettlemoyer",
+      "category": "10 一线研究扩展：Google / Meta / Stanford / AI 工程（16 位）",
+      "focus": "模型训练、语言模型研发"
+    },
+    {
+      "enabled": true,
+      "name": "Sander Dieleman",
+      "handle": "sedielem",
+      "url": "https://x.com/sedielem",
+      "category": "10 一线研究扩展：Google / Meta / Stanford / AI 工程（16 位）",
+      "focus": "DeepMind 生成模型、Gemini、多模态"
+    },
+    {
+      "enabled": true,
+      "name": "Tengyu Ma",
+      "handle": "tengyuma",
+      "url": "https://x.com/tengyuma",
+      "category": "10 一线研究扩展：Google / Meta / Stanford / AI 工程（16 位）",
+      "focus": "斯坦福 / Voyage AI 嵌入、LLM 与理论"
+    },
+    {
+      "enabled": true,
+      "name": "Taco Cohen",
+      "handle": "TacoCohen",
+      "url": "https://x.com/TacoCohen",
+      "category": "10 一线研究扩展：Google / Meta / Stanford / AI 工程（16 位）",
+      "focus": "Meta AI 模型训练和 RL 后训练"
+    },
+    {
+      "enabled": true,
+      "name": "Sasha Luccioni",
+      "handle": "SashaMTL",
+      "url": "https://x.com/SashaMTL",
+      "category": "10 一线研究扩展：Google / Meta / Stanford / AI 工程（16 位）",
+      "focus": "Hugging Face AI 可持续性、模型评测"
+    },
+    {
+      "enabled": true,
+      "name": "Deedy Das",
+      "handle": "deedydas",
+      "url": "https://x.com/deedydas",
+      "category": "10 一线研究扩展：Google / Meta / Stanford / AI 工程（16 位）",
+      "focus": "硅谷 AI Coding 工作流、真实工程团队问题"
+    },
+    {
+      "enabled": true,
+      "name": "Min Choi",
+      "handle": "minchoi",
+      "url": "https://x.com/minchoi",
+      "category": "10 一线研究扩展：Google / Meta / Stanford / AI 工程（16 位）",
+      "focus": "可操作 AI 工具技巧、Claude 应用演示"
+    },
+    {
+      "enabled": true,
+      "name": "Matt Wolfe",
+      "handle": "mreflow",
+      "url": "https://x.com/mreflow",
+      "category": "10 一线研究扩展：Google / Meta / Stanford / AI 工程（16 位）",
+      "focus": "AI 工具实测、Prompt 与自动化"
+    }
   ]
 }

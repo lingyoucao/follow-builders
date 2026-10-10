@@ -16,7 +16,7 @@
 // Output: JSON to stdout
 // ============================================================================
 
-import { readFile, mkdir } from 'fs/promises';
+import { readFile } from 'fs/promises';
 import { existsSync } from 'fs';
 import { join } from 'path';
 import { homedir } from 'os';
@@ -26,11 +26,16 @@ import { homedir } from 'os';
 const USER_DIR = join(homedir(), '.follow-builders');
 const CONFIG_PATH = join(USER_DIR, 'config.json');
 
-const FEED_X_URL = 'https://raw.githubusercontent.com/zarazhangrui/follow-builders/main/feed-x.json';
-const FEED_PODCASTS_URL = 'https://raw.githubusercontent.com/zarazhangrui/follow-builders/main/feed-podcasts.json';
-const FEED_BLOGS_URL = 'https://raw.githubusercontent.com/zarazhangrui/follow-builders/main/feed-blogs.json';
-
-const PROMPTS_BASE = 'https://raw.githubusercontent.com/zarazhangrui/follow-builders/main/prompts';
+const DEFAULT_BASE = 'https://raw.githubusercontent.com/lingyoucao/follow-builders/main';
+const FEED_BASE = (process.env.FEED_BASE_URL || DEFAULT_BASE).replace(/\/$/, '');
+const dirIndex = process.argv.indexOf('--feed-dir');
+if (dirIndex >= 0 && !process.argv[dirIndex + 1]) throw new Error('--feed-dir requires a directory');
+const FEED_DIR = dirIndex >= 0 ? process.argv[dirIndex + 1] : null;
+const PROMPTS_BASE = (process.env.PROMPTS_BASE_URL || `${FEED_BASE}/prompts`).replace(/\/$/, '');
+async function loadFeed(filename) {
+  try { return FEED_DIR ? JSON.parse(await readFile(join(FEED_DIR, filename), 'utf8')) : await fetchJSON(`${FEED_BASE}/${filename}`); }
+  catch { return null; }
+}
 const PROMPT_FILES = [
   'summarize-podcast.md',
   'summarize-tweets.md',
@@ -42,13 +47,13 @@ const PROMPT_FILES = [
 // -- Fetch helpers -----------------------------------------------------------
 
 async function fetchJSON(url) {
-  const res = await fetch(url);
+  const res = await fetch(url, { signal: AbortSignal.timeout(15000) });
   if (!res.ok) return null;
   return res.json();
 }
 
 async function fetchText(url) {
-  const res = await fetch(url);
+  const res = await fetch(url, { signal: AbortSignal.timeout(15000) });
   if (!res.ok) return null;
   return res.text();
 }
@@ -74,14 +79,17 @@ async function main() {
 
   // 2. Fetch all three feeds
   const [feedX, feedPodcasts, feedBlogs] = await Promise.all([
-    fetchJSON(FEED_X_URL),
-    fetchJSON(FEED_PODCASTS_URL),
-    fetchJSON(FEED_BLOGS_URL)
+    loadFeed('feed-x.json'),
+    loadFeed('feed-podcasts.json'),
+    loadFeed('feed-blogs.json')
   ]);
 
   if (!feedX) errors.push('Could not fetch tweet feed');
   if (!feedPodcasts) errors.push('Could not fetch podcast feed');
   if (!feedBlogs) errors.push('Could not fetch blog feed');
+  if (feedX?.collection?.incomplete?.length) errors.push(`Tweet feed has ${feedX.collection.incomplete.length} accounts awaiting pagination`);
+  const enabledSkipped = (feedX?.collection?.skipped || []).filter(handle => !(feedX?.collection?.disabled || []).includes(handle));
+  if (enabledSkipped.length) errors.push(`Tweet feed skipped ${enabledSkipped.length} accounts; see collection report`);
   if (feedX?.errors?.length) {
     errors.push(
       ...feedX.errors.map((error) => `Tweet feed problem: ${error}`)
@@ -121,7 +129,7 @@ async function main() {
     }
 
     // Priority 2: latest from GitHub (central updates)
-    const remote = await fetchText(`${PROMPTS_BASE}/${filename}`);
+    const remote = FEED_DIR ? null : await fetchText(`${PROMPTS_BASE}/${filename}`).catch(() => null);
     if (remote) {
       prompts[key] = remote;
       continue;
@@ -135,9 +143,25 @@ async function main() {
     }
   }
 
+  // Retention is longer than a daily digest window. Anchor the window to the
+  // collection time so a once-daily feed does not lose posts before delivery.
+  const digestHours = config.frequency === 'weekly' ? 168 : 24;
+  const feedTime = Date.parse(feedX?.generatedAt);
+  const windowEnd = Number.isFinite(feedTime) ? feedTime : Date.now();
+  const digestX = (feedX?.x || []).map(account => ({
+    ...account,
+    tweets: (account.tweets || []).filter(tweet => {
+      const created = Date.parse(tweet.createdAt);
+      return created >= windowEnd - digestHours * 3600000 && created <= windowEnd;
+    }),
+  })).filter(account => account.tweets.length);
+  if (Number.isFinite(feedTime) && Date.now() - feedTime > 36 * 3600000) {
+    errors.push('Tweet feed is over 36 hours old; collection may have stopped');
+  }
+
   // 4. Build the output — everything the LLM needs in one blob
   const output = {
-    status: 'ok',
+    status: !feedX ? 'error' : errors.length ? 'partial' : 'ok',
     generatedAt: new Date().toISOString(),
 
     // User preferences
@@ -149,14 +173,14 @@ async function main() {
 
     // Content to remix
     podcasts: feedPodcasts?.podcasts || [],
-    x: feedX?.x || [],
+    x: digestX,
     blogs: feedBlogs?.blogs || [],
 
     // Stats for the LLM to reference
     stats: {
       podcastEpisodes: feedPodcasts?.podcasts?.length || 0,
-      xBuilders: feedX?.x?.length || 0,
-      totalTweets: (feedX?.x || []).reduce((sum, a) => sum + a.tweets.length, 0),
+      xBuilders: digestX.length,
+      totalTweets: digestX.reduce((sum, a) => sum + a.tweets.length, 0),
       blogPosts: feedBlogs?.blogs?.length || 0,
       feedGeneratedAt: feedX?.generatedAt || feedPodcasts?.generatedAt || feedBlogs?.generatedAt || null
     },
@@ -169,6 +193,7 @@ async function main() {
   };
 
   console.log(JSON.stringify(output, null, 2));
+  if (!feedX) process.exitCode = 1;
 }
 
 main().catch(err => {
