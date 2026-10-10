@@ -17,6 +17,55 @@ export function mergeContent(previous = [], incoming = [], days = 7, now = Date.
   return [...accounts.values()].filter(account => account.tweets.length);
 }
 
+// Only retain diagnostic fields, never request headers or arbitrary response keys.
+export function redactXText(value, token = '') {
+  let text = String(value);
+  const secrets = new Set([token, encodeURIComponent(token)]);
+  try { secrets.add(decodeURIComponent(token)); } catch {}
+  for (const secret of secrets) if (secret) text = text.split(secret).join('[REDACTED]');
+  return text.replace(/Bearer\s+[^\s"<>]+/gi, 'Bearer [REDACTED]').slice(0, 2000);
+}
+
+export async function readXError(response, token = '', parsedBody) {
+  let body = parsedBody;
+  if (body === undefined) {
+    try {
+      if (response.text) {
+        const raw = await response.text();
+        try { body = JSON.parse(raw); }
+        catch { body = { detail: raw }; }
+      } else body = response.json ? await response.json() : {};
+    } catch { body = {}; }
+  }
+  const diagnostic = { status: response.status };
+  for (const field of ['title', 'detail', 'type', 'reason']) {
+    if (body && typeof body[field] === 'string') diagnostic[field] = redactXText(body[field], token);
+  }
+  if (Array.isArray(body?.errors)) {
+    diagnostic.errors = body.errors.slice(0, 5).map(error => {
+      const clean = {};
+      for (const field of ['title', 'detail', 'type', 'reason']) {
+        if (typeof error?.[field] === 'string') clean[field] = redactXText(error[field], token);
+      }
+      return clean;
+    });
+  }
+  const requestId = response.headers?.get('x-request-id') || response.headers?.get('x-transaction-id');
+  if (requestId) diagnostic.requestId = redactXText(requestId, token);
+  for (const field of ['x-rate-limit-remaining', 'x-rate-limit-reset', 'retry-after']) {
+    const value = response.headers?.get(field);
+    if (value) diagnostic[field] = redactXText(value, token);
+  }
+  return diagnostic;
+}
+
+function apiError(stage, endpoint, diagnostic) {
+  const detail = diagnostic.detail || diagnostic.title;
+  const error = new Error(`${stage} HTTP ${diagnostic.status}${detail ? `: ${detail}` : ''}`);
+  error.diagnostic = { stage, endpoint, ...diagnostic };
+  return error;
+}
+
 async function requestX(url, token) {
   for (let attempt = 0; attempt < 3; attempt++) {
     try {
@@ -95,7 +144,7 @@ export async function collectX(accounts, token, state, options = {}) {
       if (!user.id) {
         const response = await request(`${BASE}/users/by/username/${encodeURIComponent(account.handle)}?user.fields=description`);
         status = response.status;
-        if (!response.ok) throw new Error(`User lookup HTTP ${status}`);
+        if (!response.ok) throw apiError('User lookup', `/2/users/by/username/${account.handle}`, await readXError(response, token));
         const body = await response.json();
         if (!body.data?.id) throw new Error('User lookup returned no user');
         user.id = body.data.id;
@@ -114,12 +163,15 @@ export async function collectX(accounts, token, state, options = {}) {
       for (let page = 0; page < maxPages; page++) {
         const url = `${BASE}/users/${user.id}/tweets`;
         let response = await request(`${url}?${timelineParams(pending, state.xFieldFormat)}`);
+        let errorDetails;
         // New X API documentation uses post.fields/note_post. Switch only on a
         // field-related rejection, preserving compatibility with legacy deployments.
         if (response.status === 400 && state.xFieldFormat !== 'post') {
-          const details = response.json ? await response.json().catch(() => ({})) : {};
+          const details = await readXError(response, token);
+          errorDetails = details;
           if (/tweet\.fields|note_tweet|referenced_tweets/.test(JSON.stringify(details))) {
             response = await request(`${url}?${timelineParams(pending, 'post')}`);
+            errorDetails = undefined;
             if (response.ok) state.xFieldFormat = 'post';
           }
         }
@@ -127,7 +179,7 @@ export async function collectX(accounts, token, state, options = {}) {
         if (!response.ok) {
           if (status === 404) delete user.id;
           if (status === 400 && pending.nextToken) delete pending.nextToken;
-          throw new Error(`Timeline HTTP ${status}`);
+          throw apiError('Timeline', `/2/users/${user.id || 'unknown'}/tweets`, errorDetails || await readXError(response, token));
         }
         const body = await response.json();
         if (body.errors?.length) {
@@ -161,7 +213,7 @@ export async function collectX(accounts, token, state, options = {}) {
       // Keep the original time window and the last successfully read page.
       // Invalid pagination tokens restart that same window; transient errors resume it.
       if (pending) user.pending = pending;
-      report.failed.push({ handle: account.handle, error: error.message });
+      report.failed.push({ handle: account.handle, error: redactXText(error.message, token), ...(error.diagnostic ? { diagnostic: error.diagnostic } : {}) });
       if ([401, 402, 429].includes(status)) {
         stopped = true;
         state.xNextHandle = key;

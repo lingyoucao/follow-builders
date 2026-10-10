@@ -58,3 +58,11 @@ FEED_BASE_URL=https://raw.githubusercontent.com/OWNER/REPO/main node scripts/pre
 当前 236 个账号只有格式与合并校验，真实账号存在性、API 权限、配额和价格需配置凭据后验证。完整分页完成前不推进账号游标；写入使用临时文件加 rename，但多个输出文件不构成数据库事务。Actions 串行调度；不要同时从本地和 Actions 写同一仓库状态。API 历史范围限制仍可能影响长时间停机后的补采。
 
 采集器保留旧版 tweet.fields / note_tweet 兼容路径；如果 X 明确返回字段不支持的 400 错误，会尝试新版 post.fields / note_post，并记录成功格式以供后续请求使用。响应兼容 retweet_count / repost_count。参数参照 [X 官方文档](https://docs.x.com/x-api/users/get-posts)，仍需真实 token 联调。
+
+## 最小诊断（先确认 API 可访问）
+
+Actions 手动运行 Generate Feeds 时，可选择 `diagnose-x`。它仅使用现有 Secret，对 @karpathy 发出一次最简用户查询；成功后再发出一次 `max_results=5` 的时间线请求。不使用历史状态、复杂字段或 236 人批量采集，不写回 feed 和采集游标。两次请求仍可能按 X API 规则计费。
+
+结果出现在日志和 Summary，包括阶段、HTTP 状态、X 返回的 title/detail/type 和 request ID。不会记录 token 或完整请求头，不修改现有 token。首次失败即停止；不要仅凭 HTTP 402 推断余额为零，应结合 X 的错误正文和该应用所属开发者账户的 Billing / Credits 确认。
+
+采集报告也会保存这些诊断字段，日志区分“本轮获取数”和“历史保留数”，避免将旧 feed 内容当作本次成功采集。`lastSuccessfulCollectionAt` 表示最后一次至少有账号完成查询的时间，并不表示 236 个全部完成。

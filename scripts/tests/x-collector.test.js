@@ -113,3 +113,19 @@ test('field rejection retries current post field names and normalizes the respon
   assert.equal(result.x[0].tweets[0].retweets, 5);
   assert.equal(result.x[0].tweets[0].quotedTweetId, '20');
 });
+test('402 report preserves server error details and request identity without exposing credentials', async () => {
+  const token = 'secret-probe-token';
+  const result = await collectX([account], token, {}, {
+    request: async () => new Response(JSON.stringify({
+      title: 'CreditsDepleted', detail: `Not enough credits. credential=${token}`,
+      type: 'https://api.x.com/2/problems/credits-depleted', access_token: token
+    }), { status: 402, headers: { 'x-request-id': 'req-123', 'set-cookie': 'private-cookie' } })
+  });
+  const failure = result.report.failed[0];
+  assert.equal(failure.diagnostic.status, 402);
+  assert.equal(failure.diagnostic.title, 'CreditsDepleted');
+  assert.equal(failure.diagnostic.requestId, 'req-123');
+  assert.ok(failure.diagnostic.detail.includes('Not enough credits'));
+  assert.ok(!JSON.stringify(result).includes(token));
+  assert.ok(!JSON.stringify(result).includes('private-cookie'));
+});

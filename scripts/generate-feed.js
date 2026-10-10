@@ -915,13 +915,17 @@ async function main() {
     await writeFile(`${archivePath}.tmp`, JSON.stringify({ generatedAt, x: mergeContent(archive.x, incoming, Infinity) }, null, 2));
     await rename(`${archivePath}.tmp`, archivePath);
     const totalTweets = xContent.reduce((sum, a) => sum + a.tweets.length, 0);
+    const fetchedTweets = incoming.reduce((sum, account) => sum + account.tweets.length, 0);
     const xFeed = { generatedAt, lookbackHours: 168, x: xContent,
-      stats: { configuredAccounts: sources.x_accounts.length, xBuilders: xContent.length, totalTweets },
+      lastSuccessfulCollectionAt: report.completed.length ? generatedAt : previous.lastSuccessfulCollectionAt || previous.generatedAt || null,
+      stats: { configuredAccounts: sources.x_accounts.length, xBuilders: xContent.length, totalTweets, fetchedTweets, completedAccounts: report.completed.length },
       errors: errors.filter(e => e.startsWith("X API")), collection: report };
     await writeFile(`${feedPath}.tmp`, JSON.stringify(xFeed, null, 2));
     await rename(`${feedPath}.tmp`, feedPath);
     // Persist cursors only after content has been written. A crash replays safely.
     await saveState(state);
+    console.error(`  This run: ${report.completed.length} completed accounts, ${fetchedTweets} fetched tweets, ${report.failed.length} failures`);
+    for (const failure of report.failed) console.error(`  X API @${failure.handle}: ${failure.error}`);
     console.error(`  feed-x.json: ${xContent.length} builders, ${totalTweets} retained tweets`);
     if (report.failed.length || report.incomplete.length || report.skipped.some(h => sources.x_accounts.find(a => a.handle === h)?.enabled !== false)) process.exitCode = 1;
   }
@@ -981,7 +985,7 @@ async function main() {
   await saveState(state);
 
   if (errors.length > 0) {
-    console.error(`  ${errors.length} non-fatal errors`);
+    console.error(`  ${errors.length} collection errors`);
   }
 }
 

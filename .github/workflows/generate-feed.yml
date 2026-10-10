@@ -16,6 +16,7 @@ on:
           - tweets-only
           - podcasts-only
           - blogs-only
+          - diagnose-x
 
 concurrency:
   group: generate-feeds
@@ -52,6 +53,10 @@ jobs:
           EVENT_NAME: ${{ github.event_name }}
           MODE: ${{ inputs.mode }}
         run: |
+          if [ "$EVENT_NAME" = "workflow_dispatch" ] && [ "$MODE" = "diagnose-x" ]; then
+            cd scripts && node diagnose-x.js
+            exit 0
+          fi
           # Discard a previous run's report so early failures cannot show stale success.
           mkdir -p reports
           rm -f reports/x-collection.json
@@ -66,6 +71,7 @@ jobs:
           fi
 
       - name: Commit and push feeds
+        if: inputs.mode != 'diagnose-x'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -78,8 +84,15 @@ jobs:
 
       - name: Collection summary
         if: always()
+        env:
+          MODE: ${{ inputs.mode }}
         run: |
-          if [ -f reports/x-collection.json ]; then
+          if [ "$MODE" = "diagnose-x" ] && [ -f reports/x-diagnostic.json ]; then
+            echo '### X API diagnostic (single account)' >> "$GITHUB_STEP_SUMMARY"
+            echo '```json' >> "$GITHUB_STEP_SUMMARY"
+            cat reports/x-diagnostic.json >> "$GITHUB_STEP_SUMMARY"
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+          elif [ -f reports/x-collection.json ]; then
             echo '### X collection report' >> "$GITHUB_STEP_SUMMARY"
             echo '```json' >> "$GITHUB_STEP_SUMMARY"
             cat reports/x-collection.json >> "$GITHUB_STEP_SUMMARY"
